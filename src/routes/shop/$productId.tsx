@@ -2,12 +2,13 @@ import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import { useState } from 'react'
 import { ShoppingCart, Timer, Layers, AlertCircle, Printer } from 'lucide-react'
 import ProductImageGallery from '../../components/ProductImageGallery'
+import ProductViewer3D from '../../components/ProductViewer3D'
 import ProductGrid from '../../components/ProductGrid'
 import StarRating from '../../components/StarRating'
 import { useCart } from '../../contexts/CartContext'
 import { PRODUCTS } from '../../lib/data'
 import type { Material } from '../../lib/types'
-import { formatPrice } from '../../lib/utils'
+import { cn, formatPrice } from '../../lib/utils'
 import { Badge } from '../../components/ui/badge'
 import { Button } from '../../components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select'
@@ -41,6 +42,7 @@ function ProductDetailPage() {
   const { product } = Route.useLoaderData()
   const { addItem } = useCart()
   const [selectedMaterial, setSelectedMaterial] = useState<Material>(product.materials[0])
+  const [activeTab, setActiveTab] = useState<'photos' | '3d'>('photos')
 
   const related = PRODUCTS.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3)
 
@@ -59,7 +61,31 @@ function ProductDetailPage() {
       </nav>
 
       <div className="grid gap-10 md:grid-cols-2">
-        <ProductImageGallery images={product.images} name={product.name} />
+        <div className="space-y-3">
+          {product.modelUrl && (
+            <div className="flex gap-1 rounded-xl border border-[var(--line)] bg-[var(--surface)] p-1">
+              {(['photos', '3d'] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={cn(
+                    'flex-1 rounded-lg px-4 py-1.5 text-sm font-semibold transition-all',
+                    activeTab === tab
+                      ? 'bg-[var(--lagoon)] text-white shadow-sm'
+                      : 'text-[var(--sea-ink-soft)] hover:text-[var(--sea-ink)]',
+                  )}
+                >
+                  {tab === 'photos' ? 'Photos' : '3D View'}
+                </button>
+              ))}
+            </div>
+          )}
+          {activeTab === '3d' && product.modelUrl ? (
+            <ProductViewer3D modelUrl={product.modelUrl} />
+          ) : (
+            <ProductImageGallery images={product.images} name={product.name} />
+          )}
+        </div>
 
         <div className="space-y-5">
           <div>
