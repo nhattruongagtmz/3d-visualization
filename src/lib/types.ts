@@ -9,6 +9,7 @@ export interface Product {
   description: string
   price: number
   images: string[]
+  modelUrl?: string
   category: Category
   materials: Material[]
   printerCompatibility: PrinterCompatibility[]
