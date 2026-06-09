@@ -90,7 +90,9 @@ function ProductDetailPage() {
         <div className="space-y-5">
           <div>
             <p className="island-kicker mb-1 capitalize">{product.category.replace('-', ' ')}</p>
-            <h1 className="text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">{product.name}</h1>
+            <h1 className="text-balance text-3xl font-bold text-[var(--sea-ink)] md:text-4xl">
+              {product.name}
+            </h1>
             <p className="mt-1 text-[var(--sea-ink-soft)]">{product.tagline}</p>
           </div>
 

@@ -157,6 +157,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body,
 #app {
@@ -276,7 +280,12 @@ button,
 .island-shell,
 a {
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
-    transform 180ms ease;
+    transform 180ms ease, opacity 180ms ease;
+}
+
+button:not(:disabled):active {
+  transform: scale(0.97);
+  transition-duration: 80ms;
 }
 
 .island-kicker {

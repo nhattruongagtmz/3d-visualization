@@ -28,12 +28,12 @@ export default function ProductViewer3DScene({ modelUrl }: { modelUrl: string })
   const orbitRef = useRef<{ dollyIn: (s: number) => void; dollyOut: (s: number) => void; update: () => void } | null>(null)
 
   function handleZoomIn() {
-    orbitRef.current?.dollyIn(1.3)
+    orbitRef.current?.dollyOut(1.3)
     orbitRef.current?.update()
   }
 
   function handleZoomOut() {
-    orbitRef.current?.dollyOut(1.3)
+    orbitRef.current?.dollyIn(1.3)
     orbitRef.current?.update()
   }
 

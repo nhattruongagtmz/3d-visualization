@@ -20,7 +20,25 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'PrintForge — 3D-Printed Models',
+      },
+      {
+        name: 'description',
+        content:
+          'Browse 14 original 3D-printed models made on Bambu Lab hardware. Geometric decor, functional parts, toys, and more. Ships within 2 business days.',
+      },
+      {
+        property: 'og:title',
+        content: 'PrintForge — 3D-Printed Models',
+      },
+      {
+        property: 'og:description',
+        content:
+          'Original 3D-printed models made fresh on Bambu Lab hardware. Free shipping over $50.',
+      },
+      {
+        property: 'og:type',
+        content: 'website',
       },
     ],
     links: [

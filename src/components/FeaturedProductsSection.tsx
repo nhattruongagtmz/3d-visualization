@@ -12,7 +12,9 @@ export default function FeaturedProductsSection() {
         <div className="mb-8 flex items-end justify-between">
           <div>
             <p className="island-kicker mb-1">Hand-picked</p>
-            <h2 className="text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">Featured Picks</h2>
+            <h2 className="text-balance text-2xl font-bold text-[var(--sea-ink)] md:text-3xl lg:text-4xl">
+            Featured picks
+          </h2>
           </div>
           <Link
             to="/shop"

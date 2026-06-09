@@ -80,7 +80,7 @@ export const PRODUCTS: Product[] = [
       'A fully articulated dragon printed without supports or assembly — every joint and spine segment moves right off the build plate. A technical showpiece that kids and collectors love equally.',
     price: 1499,
     images: [
-      'https://images.unsplash.com/photo-1612099197634-b2e1b1ea3edc?w=600&q=80',
+      'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&q=80',
       'https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600&q=80',
     ],
     modelUrl: '/models/dragon.glb',
@@ -266,7 +266,7 @@ export const PRODUCTS: Product[] = [
       'A universal GoPro-compatible handlebar mount that fits 22–35 mm bars. Printed in ASA for UV and heat resistance. Tested at 80 km/h vibration without play. Includes printed locking nut.',
     price: 1299,
     images: [
-      'https://images.unsplash.com/photo-1609341687-7c16b1e0e41b?w=600&q=80',
+      'https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=600&q=80',
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
     ],
     modelUrl: '/models/mount.glb',

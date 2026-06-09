@@ -28,6 +28,8 @@ export default function Footer() {
               <p className="font-semibold text-[var(--sea-ink)]">Company</p>
               <Link to="/about" className="block hover:text-[var(--sea-ink)] no-underline">About</Link>
               <Link to="/cart" className="block hover:text-[var(--sea-ink)] no-underline">Cart</Link>
+              <Link to="/about" className="block hover:text-[var(--sea-ink)] no-underline">Privacy policy</Link>
+              <Link to="/about" className="block hover:text-[var(--sea-ink)] no-underline">Terms of service</Link>
             </div>
           </div>
         </div>
