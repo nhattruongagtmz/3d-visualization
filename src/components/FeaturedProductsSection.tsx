@@ -1,32 +1,42 @@
 import { Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
 import { PRODUCTS } from '../lib/data'
+import { strings } from '../lib/strings'
 import ProductCard from './ProductCard'
+import Reveal from './Reveal'
 
 export default function FeaturedProductsSection() {
   const featured = PRODUCTS.filter((p) => p.featured).slice(0, 4)
+  const [hero, ...rest] = featured
 
   return (
     <section className="py-16">
       <div className="page-wrap">
-        <div className="mb-8 flex items-end justify-between">
+        <Reveal className="mb-8 flex items-end justify-between">
           <div>
-            <p className="island-kicker mb-1">Hand-picked</p>
+            <p className="island-kicker mb-1">{strings.featured.eyebrow}</p>
             <h2 className="text-balance text-2xl font-bold text-[var(--sea-ink)] md:text-3xl lg:text-4xl">
-            Featured picks
-          </h2>
+              {strings.featured.heading}
+            </h2>
           </div>
           <Link
             to="/shop"
             className="flex items-center gap-1 text-sm font-semibold text-[var(--lagoon)] no-underline hover:underline"
           >
-            View all <ArrowRight className="h-4 w-4" />
+            {strings.featured.viewAll} <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+          {hero && (
+            <Reveal delay={0.06}>
+              <ProductCard product={hero} />
+            </Reveal>
+          )}
+          {rest.map((product, i) => (
+            <Reveal key={product.id} delay={0.12 + i * 0.08}>
+              <ProductCard product={product} />
+            </Reveal>
           ))}
         </div>
       </div>

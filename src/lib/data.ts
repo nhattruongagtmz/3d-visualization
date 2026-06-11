@@ -3,10 +3,10 @@ import type { Product } from './types'
 export const PRODUCTS: Product[] = [
   {
     id: 'geometric-vase-01',
-    name: 'Geometric Ripple Vase',
-    tagline: 'Precision-layered facets that catch every light.',
+    name: 'Bình Hoa Hình Học Gợn Sóng',
+    tagline: 'Các mặt xếp lớp chính xác bắt từng tia sáng.',
     description:
-      'A striking centerpiece with cascading geometric facets. Printed in smooth PLA for a clean finish, this vase holds fresh or dried flowers and makes an instant conversation piece on any shelf or table.',
+      'Điểm nhấn nổi bật với các mặt hình học xếp lớp theo dòng chảy. In bằng PLA mịn để hoàn thiện sạch bóng, bình hoa này cắm được hoa tươi hoặc hoa khô và ngay lập tức trở thành tâm điểm trên kệ hay bàn của bạn.',
     price: 1899,
     images: [
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
@@ -28,10 +28,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'hex-shelf-01',
-    name: 'Hexagonal Wall Shelf',
-    tagline: 'Modular honeycomb storage, wall-ready.',
+    name: 'Kệ Tường Lục Giác',
+    tagline: 'Lưu trữ tổ ong mô-đun, sẵn sàng gắn tường.',
     description:
-      'Mount individually or cluster multiple units for a honeycomb display wall. Each shelf can hold up to 1.5 kg. Ships as flat-printed panels that snap together — no glue required.',
+      'Gắn riêng lẻ hoặc kết hợp nhiều chiếc để tạo bức tường kệ tổ ong. Mỗi kệ chịu được tới 1,5 kg. Được giao ở dạng các tấm in phẳng có thể ghép lại với nhau — không cần keo.',
     price: 2499,
     images: [
       'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80',
@@ -51,10 +51,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'planter-geometric',
-    name: 'Geometric Succulent Planter',
-    tagline: 'Low-poly design meets low-maintenance plants.',
+    name: 'Chậu Cây Hình Học',
+    tagline: 'Thiết kế đa giác thấp gặp gỡ cây trồng dễ chăm.',
     description:
-      'A faceted planter with a drainage hole and removable tray. The low-poly aesthetic pairs perfectly with succulents, cacti, or small herbs. Printed watertight in PETG.',
+      'Chậu đa diện với lỗ thoát nước và khay di động. Thiết kế đa giác thấp kết hợp hoàn hảo với xương rồng, cây mọng nước hay thảo mộc nhỏ. In kín nước bằng PETG.',
     price: 1599,
     images: [
       'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80',
@@ -74,10 +74,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'dragon-articulated-01',
-    name: 'Articulated Dragon',
-    tagline: 'Every joint moves. Printed in one piece.',
+    name: 'Rồng Cử Động',
+    tagline: 'Mỗi khớp đều cử động. In trong một lần.',
     description:
-      'A fully articulated dragon printed without supports or assembly — every joint and spine segment moves right off the build plate. A technical showpiece that kids and collectors love equally.',
+      'Rồng cử động hoàn toàn, in không cần đế đỡ hay lắp ráp — mỗi khớp và đốt sống đều cử động ngay khi lấy khỏi bàn in. Một tác phẩm kỹ thuật mà cả trẻ em lẫn nhà sưu tầm đều yêu thích.',
     price: 1499,
     images: [
       'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&q=80',
@@ -98,10 +98,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'rocket-fidget-01',
-    name: 'Rocket Fidget Spinner',
-    tagline: 'Smooth bearings. Space-age style.',
+    name: 'Fidget Spinner Tên Lửa',
+    tagline: 'Vòng bi mượt mà. Phong cách vũ trụ.',
     description:
-      'A three-blade fidget spinner shaped like a rocket with integrated 608 bearings. Balanced for a long, silent spin. Great desk toy for focus and stress relief.',
+      'Fidget spinner ba cánh hình tên lửa với vòng bi 608 tích hợp. Cân bằng để quay lâu, im lặng. Đồ chơi bàn làm việc tuyệt vời để tập trung và giảm căng thẳng.',
     price: 799,
     images: [
       'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?w=600&q=80',
@@ -121,10 +121,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'gear-fidget-01',
-    name: 'Planetary Gear Fidget',
-    tagline: 'Six gears spin in perfect sync.',
+    name: 'Fidget Bánh Răng Hành Tinh',
+    tagline: 'Sáu bánh răng quay đồng bộ hoàn hảo.',
     description:
-      'A mesmerizing planetary gear system where a central sun gear drives six planet gears in a ring. Satisfying to spin, educational to explain. No assembly needed.',
+      'Hệ thống bánh răng hành tinh mê hoặc, trong đó bánh răng mặt trời ở giữa dẫn động sáu bánh răng hành tinh trên vành. Thú vị khi quay, có tính giáo dục khi giải thích. Không cần lắp ráp.',
     price: 1199,
     images: [
       'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80',
@@ -144,10 +144,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'cable-clip-pack',
-    name: 'Cable Clip Organizer 6-Pack',
-    tagline: 'Stick once, stay tidy forever.',
+    name: 'Bộ Kẹp Dây Cáp 6 Cái',
+    tagline: 'Dán một lần, gọn gàng mãi mãi.',
     description:
-      'Six adhesive-backed cable clips sized for USB-C, HDMI, and power cables. Mount on your desk edge or monitor arm. Printed in flexible TPU so cables click in and out without force.',
+      'Sáu kẹp dây cáp có băng dính phù hợp với USB-C, HDMI và cáp nguồn. Gắn trên mép bàn hoặc cánh tay màn hình. In bằng TPU mềm dẻo để cáp bấm vào và ra dễ dàng.',
     price: 999,
     images: [
       'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80',
@@ -167,10 +167,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'wrench-holder-01',
-    name: 'Magnetic Wrench Holder',
-    tagline: 'Every wrench in its place, always.',
+    name: 'Giá Đỡ Cờ Lê Từ Tính',
+    tagline: 'Mỗi chiếc cờ lê đều có chỗ, luôn luôn.',
     description:
-      'A wall-mounted wrench rack with embedded neodymium magnet slots (magnets sold separately). Holds up to 12 combination wrenches. Printed in durable PETG with reinforced mounting holes.',
+      'Giá đỡ cờ lê gắn tường với các khe nam châm neodymium (nam châm bán riêng). Chứa được tới 12 chiếc cờ lê. In bằng PETG bền chắc với lỗ gắn tường được gia cố.',
     price: 1799,
     images: [
       'https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&q=80',
@@ -190,10 +190,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'voronoi-lamp-01',
-    name: 'Voronoi Table Lamp',
-    tagline: 'Math-generated shadow art for your desk.',
+    name: 'Đèn Bàn Voronoi',
+    tagline: 'Nghệ thuật bóng tối được tạo bởi toán học.',
     description:
-      'A Voronoi-tessellated lamp shade that casts intricate cell patterns across the room. Compatible with any E26 bulb socket (not included). Printed in translucent PETG for a warm glow.',
+      'Chao đèn tessellation Voronoi chiếu các mẫu ô phức tạp khắp căn phòng. Tương thích với bất kỳ đui đèn E26 nào (không kèm). In bằng PETG trong suốt để tạo ánh sáng ấm áp.',
     price: 3499,
     images: [
       'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
@@ -214,10 +214,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'wave-wall-art',
-    name: 'Wave Topology Wall Art',
-    tagline: 'Topographic contours, gallery-ready.',
+    name: 'Tranh Tường Địa Hình Sóng',
+    tagline: 'Đường đồng mức địa hình, sẵn sàng trưng bày.',
     description:
-      'A multi-layer topographic wave panel inspired by ocean bathymetry maps. Each contour line is a separate print in contrasting colors, stacked and glued for a 3D relief effect. Ships flat for easy framing.',
+      'Bảng sóng địa hình nhiều lớp lấy cảm hứng từ bản đồ đáy biển. Mỗi đường đồng mức là một bản in riêng biệt màu tương phản, xếp chồng và dán lại để tạo hiệu ứng nổi 3D. Giao hàng phẳng để dễ đóng khung.',
     price: 2199,
     images: [
       'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=600&q=80',
@@ -237,10 +237,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'pi-keychain',
-    name: 'Pi Constant Keychain',
-    tagline: 'Carry infinity in your pocket.',
+    name: 'Móc Khóa Số Pi',
+    tagline: 'Mang vô cực trong túi bạn.',
     description:
-      'A slim keychain engraved with the first 50 digits of pi. Printed in rigid PLA with a polished finish. A nerdy gift that fits in any pocket.',
+      'Móc khóa mỏng khắc 50 chữ số đầu tiên của pi. In bằng PLA cứng với lớp hoàn thiện bóng. Món quà dành cho người yêu toán học, vừa túi bất kỳ ai.',
     price: 599,
     images: [
       'https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&q=80',
@@ -260,10 +260,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'gopro-mount-01',
-    name: 'GoPro Handlebar Mount',
-    tagline: 'Lock your GoPro to any handlebar in seconds.',
+    name: 'Giá Gắn GoPro Tay Lái',
+    tagline: 'Khóa GoPro vào bất kỳ tay lái nào trong vài giây.',
     description:
-      'A universal GoPro-compatible handlebar mount that fits 22–35 mm bars. Printed in ASA for UV and heat resistance. Tested at 80 km/h vibration without play. Includes printed locking nut.',
+      'Giá gắn tay lái tương thích GoPro phổ thông cho ghi đông 22–35 mm. In bằng ASA chống UV và nhiệt. Đã thử nghiệm ở độ rung 80 km/h không bị rơ. Kèm đai ốc khóa in sẵn.',
     price: 1299,
     images: [
       'https://images.unsplash.com/photo-1502744688674-c619d1586c9e?w=600&q=80',
@@ -284,10 +284,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'cable-routing-desk',
-    name: 'Desk Cable Routing System',
-    tagline: 'Under-desk cable management, finally solved.',
+    name: 'Hệ Thống Quản Lý Cáp Bàn Làm Việc',
+    tagline: 'Quản lý cáp gầm bàn, đã được giải quyết.',
     description:
-      'A modular under-desk cable tray with snap-in clip channels. Mounts with double-sided tape or screws. Holds power strips, surge protectors, and cable bundles out of sight.',
+      'Khay cáp gầm bàn mô-đun với các kênh kẹp snap-in. Gắn bằng băng dính hai mặt hoặc vít. Giữ ổ cắm điện, bộ lọc điện và bó cáp gọn gàng ngoài tầm nhìn.',
     price: 2099,
     images: [
       'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=600&q=80',
@@ -307,10 +307,10 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'phone-stand-01',
-    name: 'Adjustable Phone Stand',
-    tagline: 'Any angle, any desk, any phone.',
+    name: 'Giá Đỡ Điện Thoại Điều Chỉnh',
+    tagline: 'Mọi góc độ, mọi bàn, mọi điện thoại.',
     description:
-      'A foldable phone stand with a friction-fit hinge that holds any angle from 20° to 80°. Works with phones up to 85 mm wide including cases. Folds flat for travel.',
+      'Giá đỡ điện thoại gập được với bản lề ma sát giữ bất kỳ góc nào từ 20° đến 80°. Dùng với điện thoại rộng tới 85 mm kể cả ốp lưng. Gập phẳng để mang đi.',
     price: 1099,
     images: [
       'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=600&q=80',
@@ -331,9 +331,9 @@ export const PRODUCTS: Product[] = [
 ]
 
 export const CATEGORIES = [
-  { id: 'home-decor' as const, label: 'Home Decor', icon: 'Home' },
-  { id: 'toys' as const, label: 'Toys & Collectibles', icon: 'Gamepad2' },
-  { id: 'tools' as const, label: 'Tools & Storage', icon: 'Wrench' },
-  { id: 'art' as const, label: 'Art & Sculpture', icon: 'Palette' },
-  { id: 'functional-parts' as const, label: 'Functional Parts', icon: 'Settings2' },
+  { id: 'home-decor' as const, label: 'Trang trí nội thất', icon: 'Home' },
+  { id: 'toys' as const, label: 'Đồ chơi & Sưu tập', icon: 'Gamepad2' },
+  { id: 'tools' as const, label: 'Công cụ & Lưu trữ', icon: 'Wrench' },
+  { id: 'art' as const, label: 'Nghệ thuật & Điêu khắc', icon: 'Palette' },
+  { id: 'functional-parts' as const, label: 'Linh kiện chức năng', icon: 'Settings2' },
 ]

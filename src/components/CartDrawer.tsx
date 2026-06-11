@@ -1,5 +1,6 @@
 import { ShoppingBag } from 'lucide-react'
 import { useCart } from '../contexts/CartContext'
+import { strings } from '../lib/strings'
 import CartItemRow from './CartItemRow'
 import CartSummary from './CartSummary'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from './ui/sheet'
@@ -14,14 +15,14 @@ export default function CartDrawer() {
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2 text-[var(--sea-ink)]">
             <ShoppingBag className="h-5 w-5" />
-            Your Cart
+            {strings.cart.drawerTitle}
           </SheetTitle>
         </SheetHeader>
 
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
             <ShoppingBag className="h-12 w-12 text-[var(--sea-ink-soft)]" strokeWidth={1} />
-            <p className="text-sm text-[var(--sea-ink-soft)]">Your cart is empty</p>
+            <p className="text-sm text-[var(--sea-ink-soft)]">{strings.cart.empty}</p>
           </div>
         ) : (
           <>

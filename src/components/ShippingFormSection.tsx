@@ -1,4 +1,5 @@
 import type { ShippingForm } from '../lib/types'
+import { strings } from '../lib/strings'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 
@@ -44,28 +45,31 @@ function Field({
   )
 }
 
+const s = strings.shipping
+const p = strings.shipping.placeholders
+
 export default function ShippingFormSection({ form, onChange, errors }: ShippingFormSectionProps) {
   return (
     <div className="space-y-5">
-      <h2 className="text-lg font-semibold text-[var(--sea-ink)]">Shipping Information</h2>
+      <h2 className="text-lg font-semibold text-[var(--sea-ink)]">{s.sectionTitle}</h2>
 
       <div className="grid grid-cols-2 gap-4">
-        <Field id="firstName" label="First Name" value={form.firstName} onChange={(v) => onChange('firstName', v)} error={errors.firstName} placeholder="Ada" />
-        <Field id="lastName" label="Last Name" value={form.lastName} onChange={(v) => onChange('lastName', v)} error={errors.lastName} placeholder="Lovelace" />
+        <Field id="firstName" label={s.firstName} value={form.firstName} onChange={(v) => onChange('firstName', v)} error={errors.firstName} placeholder={p.firstName} />
+        <Field id="lastName" label={s.lastName} value={form.lastName} onChange={(v) => onChange('lastName', v)} error={errors.lastName} placeholder={p.lastName} />
       </div>
 
-      <Field id="email" label="Email" type="email" value={form.email} onChange={(v) => onChange('email', v)} error={errors.email} placeholder="ada@example.com" />
+      <Field id="email" label={s.email} type="email" value={form.email} onChange={(v) => onChange('email', v)} error={errors.email} placeholder={p.email} />
 
-      <Field id="address" label="Address" value={form.address} onChange={(v) => onChange('address', v)} error={errors.address} placeholder="123 Main St" />
+      <Field id="address" label={s.address} value={form.address} onChange={(v) => onChange('address', v)} error={errors.address} placeholder={p.address} />
 
       <div className="grid grid-cols-2 gap-4">
-        <Field id="city" label="City" value={form.city} onChange={(v) => onChange('city', v)} error={errors.city} placeholder="New York" />
-        <Field id="state" label="State" value={form.state} onChange={(v) => onChange('state', v)} error={errors.state} placeholder="NY" />
+        <Field id="city" label={s.city} value={form.city} onChange={(v) => onChange('city', v)} error={errors.city} placeholder={p.city} />
+        <Field id="state" label={s.state} value={form.state} onChange={(v) => onChange('state', v)} error={errors.state} placeholder={p.state} />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <Field id="zip" label="ZIP Code" value={form.zip} onChange={(v) => onChange('zip', v)} error={errors.zip} placeholder="10001" />
-        <Field id="country" label="Country" value={form.country} onChange={(v) => onChange('country', v)} error={errors.country} placeholder="United States" />
+        <Field id="zip" label={s.zip} value={form.zip} onChange={(v) => onChange('zip', v)} error={errors.zip} placeholder={p.zip} />
+        <Field id="country" label={s.country} value={form.country} onChange={(v) => onChange('country', v)} error={errors.country} placeholder={p.country} />
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import { useCart } from '../contexts/CartContext'
+import { strings } from '../lib/strings'
 import { formatPrice } from '../lib/utils'
 import { Separator } from './ui/separator'
 
@@ -9,7 +10,7 @@ export default function OrderSummaryPanel() {
 
   return (
     <div className="rounded-xl border border-[var(--line)] p-5 space-y-4">
-      <h2 className="font-semibold text-[var(--sea-ink)]">Order Summary</h2>
+      <h2 className="font-semibold text-[var(--sea-ink)]">{strings.orderSummary.title}</h2>
       <Separator />
 
       <div className="space-y-3">
@@ -37,15 +38,15 @@ export default function OrderSummaryPanel() {
 
       <div className="space-y-2 text-sm">
         <div className="flex justify-between text-[var(--sea-ink-soft)]">
-          <span>Subtotal ({totalItems} items)</span>
+          <span>{strings.orderSummary.subtotal(totalItems)}</span>
           <span>{formatPrice(subtotal)}</span>
         </div>
         <div className="flex justify-between text-[var(--sea-ink-soft)]">
-          <span>Shipping</span>
-          <span>{shipping === 0 ? 'Free' : formatPrice(shipping)}</span>
+          <span>{strings.orderSummary.shipping}</span>
+          <span>{shipping === 0 ? strings.orderSummary.free : formatPrice(shipping)}</span>
         </div>
         <div className="flex justify-between text-sm font-semibold text-[var(--sea-ink)] pt-1 border-t border-[var(--line)]">
-          <span>Total</span>
+          <span>{strings.orderSummary.total}</span>
           <span>{formatPrice(total)}</span>
         </div>
       </div>

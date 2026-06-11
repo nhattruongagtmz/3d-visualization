@@ -1,35 +1,10 @@
 import { X } from 'lucide-react'
 import type { Category, Material, PrinterCompatibility, ShopFilters as Filters } from '../lib/types'
+import { strings } from '../lib/strings'
 import FilterCheckboxGroup from './FilterCheckboxGroup'
 import PriceRangeSlider from './PriceRangeSlider'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion'
 import { Button } from './ui/button'
-
-const CATEGORY_OPTIONS = [
-  { value: 'home-decor', label: 'Home Decor' },
-  { value: 'toys', label: 'Toys & Collectibles' },
-  { value: 'tools', label: 'Tools & Storage' },
-  { value: 'art', label: 'Art & Sculpture' },
-  { value: 'functional-parts', label: 'Functional Parts' },
-]
-
-const PRINTER_OPTIONS = [
-  { value: 'X1C', label: 'X1 Carbon' },
-  { value: 'X1E', label: 'X1 Extreme' },
-  { value: 'P1S', label: 'P1S' },
-  { value: 'P1P', label: 'P1P' },
-  { value: 'A1', label: 'A1' },
-  { value: 'A1 Mini', label: 'A1 Mini' },
-]
-
-const MATERIAL_OPTIONS = [
-  { value: 'PLA', label: 'PLA' },
-  { value: 'PETG', label: 'PETG' },
-  { value: 'ABS', label: 'ABS' },
-  { value: 'ASA', label: 'ASA' },
-  { value: 'TPU', label: 'TPU' },
-  { value: 'PA', label: 'Nylon (PA)' },
-]
 
 interface ShopFiltersProps {
   filters: Filters
@@ -62,7 +37,7 @@ export default function ShopFilters({ filters, onFiltersChange }: ShopFiltersPro
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between py-1">
-        <span className="text-sm font-semibold text-[var(--sea-ink)]">Filters</span>
+        <span className="text-sm font-semibold text-[var(--sea-ink)]">{strings.filters.title}</span>
         {hasActiveFilters && (
           <Button
             variant="ghost"
@@ -70,18 +45,18 @@ export default function ShopFilters({ filters, onFiltersChange }: ShopFiltersPro
             className="h-7 gap-1 text-xs text-[var(--sea-ink-soft)]"
             onClick={clearAll}
           >
-            <X className="h-3 w-3" /> Clear all
+            <X className="h-3 w-3" /> {strings.filters.clearAll}
           </Button>
         )}
       </div>
 
       <Accordion type="multiple" defaultValue={['category', 'price']}>
         <AccordionItem value="category">
-          <AccordionTrigger className="text-sm">Category</AccordionTrigger>
+          <AccordionTrigger className="text-sm">{strings.filters.categoryAccordion}</AccordionTrigger>
           <AccordionContent>
             <FilterCheckboxGroup
-              title="Category"
-              options={CATEGORY_OPTIONS}
+              title={strings.filters.categoryAccordion}
+              options={strings.filters.categories}
               selected={filters.categories}
               onChange={(val, checked) =>
                 onFiltersChange({
@@ -94,7 +69,7 @@ export default function ShopFilters({ filters, onFiltersChange }: ShopFiltersPro
         </AccordionItem>
 
         <AccordionItem value="price">
-          <AccordionTrigger className="text-sm">Price Range</AccordionTrigger>
+          <AccordionTrigger className="text-sm">{strings.filters.priceRangeAccordion}</AccordionTrigger>
           <AccordionContent>
             <PriceRangeSlider
               min={0}
@@ -108,11 +83,11 @@ export default function ShopFilters({ filters, onFiltersChange }: ShopFiltersPro
         </AccordionItem>
 
         <AccordionItem value="printer">
-          <AccordionTrigger className="text-sm">Printer Model</AccordionTrigger>
+          <AccordionTrigger className="text-sm">{strings.filters.printerAccordion}</AccordionTrigger>
           <AccordionContent>
             <FilterCheckboxGroup
-              title="Printer"
-              options={PRINTER_OPTIONS}
+              title={strings.filters.printerAccordion}
+              options={strings.filters.printers}
               selected={filters.printers}
               onChange={(val, checked) =>
                 onFiltersChange({
@@ -125,11 +100,11 @@ export default function ShopFilters({ filters, onFiltersChange }: ShopFiltersPro
         </AccordionItem>
 
         <AccordionItem value="material">
-          <AccordionTrigger className="text-sm">Material</AccordionTrigger>
+          <AccordionTrigger className="text-sm">{strings.filters.materialAccordion}</AccordionTrigger>
           <AccordionContent>
             <FilterCheckboxGroup
-              title="Material"
-              options={MATERIAL_OPTIONS}
+              title={strings.filters.materialAccordion}
+              options={strings.filters.materials}
               selected={filters.materials}
               onChange={(val, checked) =>
                 onFiltersChange({

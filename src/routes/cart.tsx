@@ -3,6 +3,7 @@ import { ShoppingBag } from 'lucide-react'
 import CartItemRow from '../components/CartItemRow'
 import CartSummary from '../components/CartSummary'
 import { useCart } from '../contexts/CartContext'
+import { strings } from '../lib/strings'
 import { Button } from '../components/ui/button'
 import { Separator } from '../components/ui/separator'
 
@@ -15,15 +16,15 @@ function CartPage() {
 
   return (
     <main className="page-wrap py-10">
-      <h1 className="mb-8 text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">Your Cart</h1>
+      <h1 className="mb-8 text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">{strings.cart.pageTitle}</h1>
 
       {items.length === 0 ? (
         <div className="flex flex-col items-center gap-4 py-20 text-center">
           <ShoppingBag className="h-16 w-16 text-[var(--sea-ink-soft)]" strokeWidth={1} />
-          <p className="text-[var(--sea-ink-soft)]">Your cart is empty.</p>
+          <p className="text-[var(--sea-ink-soft)]">{strings.cart.empty}</p>
           <Link to="/shop">
             <Button className="bg-[var(--lagoon)] text-white hover:opacity-90">
-              Browse the Shop
+              {strings.cart.browseShop}
             </Button>
           </Link>
         </div>
@@ -39,7 +40,7 @@ function CartPage() {
 
           <div>
             <div className="rounded-xl border border-[var(--line)] p-5 space-y-4">
-              <h2 className="font-semibold text-[var(--sea-ink)]">Order Summary</h2>
+              <h2 className="font-semibold text-[var(--sea-ink)]">{strings.cart.orderSummary}</h2>
               <Separator />
               <CartSummary />
             </div>

@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { ShoppingBag } from 'lucide-react'
 import { useCart } from '../contexts/CartContext'
+import { strings } from '../lib/strings'
 import CartDrawer from './CartDrawer'
 import ThemeToggle from './ThemeToggle'
 
@@ -15,7 +16,7 @@ export default function Header() {
             to="/"
             className="inline-flex items-center gap-2 rounded-full border border-[var(--chip-line)] bg-[var(--chip-bg)] px-3 py-1.5 text-sm text-[var(--sea-ink)] no-underline shadow-[0_8px_24px_rgba(30,90,72,0.08)] sm:px-4 sm:py-2"
           >
-            <span className="h-2 w-2 rounded-full bg-[linear-gradient(90deg,#56c6be,#7ed3bf)]" />
+            <span className="h-2 w-2 rounded-full bg-[var(--lagoon)]" />
             PrintForge
           </Link>
         </h2>
@@ -26,21 +27,28 @@ export default function Header() {
             className="nav-link"
             activeProps={{ className: 'nav-link is-active' }}
           >
-            Home
+            {strings.nav.home}
           </Link>
           <Link
             to="/shop"
             className="nav-link"
             activeProps={{ className: 'nav-link is-active' }}
           >
-            Shop
+            {strings.nav.shop}
           </Link>
           <Link
             to="/about"
             className="nav-link"
             activeProps={{ className: 'nav-link is-active' }}
           >
-            About
+            {strings.nav.about}
+          </Link>
+          <Link
+            to="/dashboard"
+            className="nav-link"
+            activeProps={{ className: 'nav-link is-active' }}
+          >
+            {strings.nav.dashboard}
           </Link>
         </div>
 
@@ -48,7 +56,7 @@ export default function Header() {
           <button
             onClick={openCart}
             className="relative rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
-            aria-label="Open cart"
+            aria-label={strings.nav.openCartAriaLabel}
           >
             <ShoppingBag className="h-6 w-6" />
             {totalItems > 0 && (

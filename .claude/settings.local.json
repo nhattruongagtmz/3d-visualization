@@ -15,7 +15,14 @@
       "Bash(Start-Sleep -Seconds 4)",
       "Bash(Get-Content \"C:\\\\Users\\\\84168\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--Claude-3d-visualization\\\\62f485a4-732c-41b0-bf21-6fcb7fabb38e\\\\tasks\\\\b55wg0y3i.output\" -Tail 10)",
       "Bash(npm install *)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001)",
+      "Skill(run)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_evaluate",
+      "Bash(npx tsc *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)"
     ]
   },
   "enabledMcpjsonServers": [

@@ -4,6 +4,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { CartProvider } from '../contexts/CartContext'
+import { strings } from '../lib/strings'
 
 import appCss from '../styles.css?url'
 
@@ -20,21 +21,19 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'PrintForge — 3D-Printed Models',
+        title: strings.meta.title,
       },
       {
         name: 'description',
-        content:
-          'Browse 14 original 3D-printed models made on Bambu Lab hardware. Geometric decor, functional parts, toys, and more. Ships within 2 business days.',
+        content: strings.meta.description,
       },
       {
         property: 'og:title',
-        content: 'PrintForge — 3D-Printed Models',
+        content: strings.meta.ogTitle,
       },
       {
         property: 'og:description',
-        content:
-          'Original 3D-printed models made fresh on Bambu Lab hardware. Free shipping over $50.',
+        content: strings.meta.ogDescription,
       },
       {
         property: 'og:type',
@@ -53,12 +52,12 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="vi" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(212,81,26,0.2)]">
         <CartProvider>
           <Header />
           {children}

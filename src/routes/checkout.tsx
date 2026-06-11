@@ -4,6 +4,7 @@ import { CheckCircle2, Package } from 'lucide-react'
 import OrderSummaryPanel from '../components/OrderSummaryPanel'
 import ShippingFormSection from '../components/ShippingFormSection'
 import { useCart } from '../contexts/CartContext'
+import { strings } from '../lib/strings'
 import type { ShippingForm } from '../lib/types'
 import { Button } from '../components/ui/button'
 
@@ -32,18 +33,21 @@ function CheckoutPage() {
     return (
       <main className="page-wrap py-20 text-center">
         <CheckCircle2 className="mx-auto mb-4 h-16 w-16 text-[var(--lagoon)]" strokeWidth={1.5} />
-        <h1 className="text-2xl font-bold text-[var(--sea-ink)]">Order Confirmed!</h1>
+        <h1 className="text-2xl font-bold text-[var(--sea-ink)]">{strings.checkout.orderConfirmedTitle}</h1>
         <p className="mt-2 text-[var(--sea-ink-soft)]">
-          Thank you for your order. Your confirmation number is{' '}
-          <span className="font-mono font-semibold text-[var(--sea-ink)]">{orderPlaced}</span>.
+          {strings.checkout.orderThankYouPrefix}
+          <span className="font-mono font-semibold text-[var(--sea-ink)]">{orderPlaced}</span>
+          {strings.checkout.orderThankYouSuffix}
         </p>
         <p className="mt-1 text-sm text-[var(--sea-ink-soft)]">
-          You'll receive an email at {form.email} when your order ships.
+          {strings.checkout.orderEmailPrefix}
+          {form.email}
+          {strings.checkout.orderEmailSuffix}
         </p>
         <Link to="/shop">
           <Button className="mt-8 bg-[var(--lagoon)] text-white hover:opacity-90">
             <Package className="mr-2 h-4 w-4" />
-            Continue Shopping
+            {strings.checkout.continueShopping}
           </Button>
         </Link>
       </main>
@@ -53,9 +57,9 @@ function CheckoutPage() {
   if (items.length === 0) {
     return (
       <main className="page-wrap py-20 text-center">
-        <h1 className="text-2xl font-bold text-[var(--sea-ink)]">Your cart is empty</h1>
+        <h1 className="text-2xl font-bold text-[var(--sea-ink)]">{strings.checkout.emptyCart}</h1>
         <Link to="/shop">
-          <Button className="mt-6 bg-[var(--lagoon)] text-white hover:opacity-90">Browse the Shop</Button>
+          <Button className="mt-6 bg-[var(--lagoon)] text-white hover:opacity-90">{strings.checkout.browseShop}</Button>
         </Link>
       </main>
     )
@@ -67,10 +71,10 @@ function CheckoutPage() {
     ]
     const newErrors: Partial<Record<keyof ShippingForm, string>> = {}
     for (const field of required) {
-      if (!form[field].trim()) newErrors[field] = 'This field is required'
+      if (!form[field].trim()) newErrors[field] = strings.checkout.fieldRequired
     }
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = 'Enter a valid email address'
+      newErrors.email = strings.checkout.invalidEmail
     }
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -86,7 +90,7 @@ function CheckoutPage() {
 
   return (
     <main className="page-wrap py-10">
-      <h1 className="mb-8 text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">Checkout</h1>
+      <h1 className="mb-8 text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">{strings.checkout.title}</h1>
 
       <form onSubmit={handleSubmit} noValidate>
         <div className="grid gap-8 lg:grid-cols-3">
@@ -101,9 +105,9 @@ function CheckoutPage() {
             />
 
             <div className="rounded-xl border border-[var(--line)] p-5 space-y-3">
-              <h2 className="text-lg font-semibold text-[var(--sea-ink)]">Payment</h2>
+              <h2 className="text-lg font-semibold text-[var(--sea-ink)]">{strings.checkout.paymentTitle}</h2>
               <p className="text-sm text-[var(--sea-ink-soft)]">
-                Payment processing is not available in this demo. Click "Place Order" to simulate a successful checkout.
+                {strings.checkout.paymentDemoNote}
               </p>
             </div>
 
@@ -112,7 +116,7 @@ function CheckoutPage() {
               size="lg"
               className="w-full bg-[var(--lagoon)] text-white hover:opacity-90"
             >
-              Place Order
+              {strings.checkout.placeOrder}
             </Button>
           </div>
 
