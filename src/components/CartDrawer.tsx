@@ -26,7 +26,7 @@ export default function CartDrawer() {
           </div>
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto px-4">
               <div className="divide-y divide-[var(--line)]">
                 {items.map((item) => (
                   <CartItemRow key={`${item.product.id}-${item.selectedMaterial}`} item={item} />
@@ -34,7 +34,9 @@ export default function CartDrawer() {
               </div>
             </div>
             <Separator />
-            <CartSummary onClose={closeCart} />
+            <div className="px-4 pb-4">
+              <CartSummary onClose={closeCart} />
+            </div>
           </>
         )}
       </SheetContent>

@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { useMemo, useState } from 'react'
+import { createFileRoute, Link, redirect, useNavigate } from '@tanstack/react-router'
+import { useEffect, useMemo, useState } from 'react'
 import {
   Home,
   Gamepad2,
@@ -17,6 +17,7 @@ import type { Product } from '../lib/types'
 import { strings } from '../lib/strings'
 import { cn, formatPrice, formatRating } from '../lib/utils'
 import Reveal from '../components/Reveal'
+import AdminLayout from '../components/AdminLayout'
 import { Badge } from '../components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card'
 import { Input } from '../components/ui/input'
@@ -26,7 +27,14 @@ import { Separator } from '../components/ui/separator'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 
+const SESSION_KEY = 'admin_auth'
+
 export const Route = createFileRoute('/dashboard')({
+  beforeLoad: () => {
+    if (typeof window !== 'undefined' && sessionStorage.getItem(SESSION_KEY) !== 'true') {
+      throw redirect({ to: '/admin-login' })
+    }
+  },
   component: DashboardPage,
 })
 
@@ -543,103 +551,120 @@ function CategoryCardsGrid({
   )
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
-function DashboardPage() {
+// ── Dashboard content (rendered inside AdminLayout) ───────────────────────────
+function DashboardContent({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab: string
+  onTabChange: (tab: string) => void
+}) {
   const stats = useDashboardStats()
 
   return (
-    <main className="page-wrap px-4 py-10">
-      <Reveal>
-        <p className="island-kicker mb-1">{strings.dashboard.pageEyebrow}</p>
-        <h1 className="display-title mb-1 text-3xl font-bold text-[var(--sea-ink)] sm:text-4xl">
-          {strings.dashboard.pageTitle}
-        </h1>
-        <p className="text-sm text-[var(--sea-ink-soft)]">{strings.dashboard.pageSubtitle}</p>
+    <Tabs value={activeTab} onValueChange={onTabChange} className="space-y-6">
+      <Reveal delay={0.05}>
+        <TabsList className="mb-2">
+          <TabsTrigger value="overview">{strings.dashboard.tabOverview}</TabsTrigger>
+          <TabsTrigger value="products">{strings.dashboard.tabProducts}</TabsTrigger>
+          <TabsTrigger value="categories">{strings.dashboard.tabCategories}</TabsTrigger>
+        </TabsList>
       </Reveal>
 
-      <Tabs defaultValue="overview" className="mt-8">
-        <Reveal delay={0.05}>
-          <TabsList className="mb-6">
-            <TabsTrigger value="overview">{strings.dashboard.tabOverview}</TabsTrigger>
-            <TabsTrigger value="products">{strings.dashboard.tabProducts}</TabsTrigger>
-            <TabsTrigger value="categories">{strings.dashboard.tabCategories}</TabsTrigger>
-          </TabsList>
+      {/* ── Overview ── */}
+      <TabsContent value="overview" className="space-y-6">
+        <Reveal delay={0.08}>
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            <KpiCard
+              title={strings.dashboard.kpiTotalProducts}
+              value={String(stats.total)}
+              sub={strings.dashboard.kpiFeaturedBadge(stats.featuredCount)}
+              icon={Package}
+            />
+            <KpiCard
+              title={strings.dashboard.kpiTotalReviews}
+              value={stats.totalReviews.toLocaleString()}
+              sub={strings.dashboard.kpiReviewsUnit}
+              icon={MessageSquare}
+            />
+            <KpiCard
+              title={strings.dashboard.kpiAvgRating}
+              value={`${formatRating(stats.avgRating)} ★`}
+              sub={strings.dashboard.kpiInStockBadge}
+              icon={Star}
+            />
+            <KpiCard
+              title={strings.dashboard.kpiPrintHours}
+              value={formatHours(stats.totalPrintHours)}
+              sub={strings.dashboard.kpiHoursUnit}
+              icon={Timer}
+            />
+          </div>
         </Reveal>
 
-        {/* ── Overview ── */}
-        <TabsContent value="overview" className="space-y-6">
-          {/* KPI row */}
-          <Reveal delay={0.08}>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-              <KpiCard
-                title={strings.dashboard.kpiTotalProducts}
-                value={String(stats.total)}
-                sub={strings.dashboard.kpiFeaturedBadge(stats.featuredCount)}
-                icon={Package}
-              />
-              <KpiCard
-                title={strings.dashboard.kpiTotalReviews}
-                value={stats.totalReviews.toLocaleString()}
-                sub={strings.dashboard.kpiReviewsUnit}
-                icon={MessageSquare}
-              />
-              <KpiCard
-                title={strings.dashboard.kpiAvgRating}
-                value={`${formatRating(stats.avgRating)} ★`}
-                sub={strings.dashboard.kpiInStockBadge}
-                icon={Star}
-              />
-              <KpiCard
-                title={strings.dashboard.kpiPrintHours}
-                value={formatHours(stats.totalPrintHours)}
-                sub={strings.dashboard.kpiHoursUnit}
-                icon={Timer}
-              />
+        <Reveal delay={0.12}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
+            <div className="md:col-span-3">
+              <CategoryDistribution categoryStats={stats.categoryStats} total={stats.total} />
             </div>
-          </Reveal>
-
-          {/* Category + Materials row */}
-          <Reveal delay={0.12}>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-5">
-              <div className="md:col-span-3">
-                <CategoryDistribution
-                  categoryStats={stats.categoryStats}
-                  total={stats.total}
-                />
-              </div>
-              <div className="md:col-span-2">
-                <MaterialsWidget
-                  materialStats={stats.materialStats}
-                  total={stats.total}
-                />
-              </div>
+            <div className="md:col-span-2">
+              <MaterialsWidget materialStats={stats.materialStats} total={stats.total} />
             </div>
-          </Reveal>
+          </div>
+        </Reveal>
 
-          {/* Featured + Price + Tech row */}
-          <Reveal delay={0.16}>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              <FeaturedProductsList products={PRODUCTS} />
-              <PriceStatsCard priceStats={stats.priceStats} />
-              <TechSpecsCard techSpecs={stats.techSpecs} total={stats.total} />
-            </div>
-          </Reveal>
-        </TabsContent>
+        <Reveal delay={0.16}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <FeaturedProductsList products={PRODUCTS} />
+            <PriceStatsCard priceStats={stats.priceStats} />
+            <TechSpecsCard techSpecs={stats.techSpecs} total={stats.total} />
+          </div>
+        </Reveal>
+      </TabsContent>
 
-        {/* ── Products Table ── */}
-        <TabsContent value="products">
-          <Reveal>
-            <ProductsTable products={PRODUCTS} />
-          </Reveal>
-        </TabsContent>
+      {/* ── Products Table ── */}
+      <TabsContent value="products">
+        <Reveal>
+          <ProductsTable products={PRODUCTS} />
+        </Reveal>
+      </TabsContent>
 
-        {/* ── Categories ── */}
-        <TabsContent value="categories">
-          <Reveal>
-            <CategoryCardsGrid categoryStats={stats.categoryStats} />
-          </Reveal>
-        </TabsContent>
-      </Tabs>
-    </main>
+      {/* ── Categories ── */}
+      <TabsContent value="categories">
+        <Reveal>
+          <CategoryCardsGrid categoryStats={stats.categoryStats} />
+        </Reveal>
+      </TabsContent>
+    </Tabs>
+  )
+}
+
+// ── Route entry point ─────────────────────────────────────────────────────────
+function DashboardPage() {
+  const navigate = useNavigate()
+  const [activeTab, setActiveTab] = useState('overview')
+  // beforeLoad handles client-side navigation; useEffect guards hard refreshes
+  // where SSR runs without access to sessionStorage.
+  const [sessionVerified, setSessionVerified] = useState(false)
+
+  useEffect(() => {
+    if (sessionStorage.getItem(SESSION_KEY) !== 'true') {
+      navigate({ to: '/admin-login' })
+    } else {
+      setSessionVerified(true)
+    }
+  }, [navigate])
+
+  if (!sessionVerified) return null
+
+  function handleLogout() {
+    sessionStorage.removeItem(SESSION_KEY)
+    navigate({ to: '/admin-login' })
+  }
+
+  return (
+    <AdminLayout onLogout={handleLogout} activeTab={activeTab} onTabChange={setActiveTab}>
+      <DashboardContent activeTab={activeTab} onTabChange={setActiveTab} />
+    </AdminLayout>
   )
 }

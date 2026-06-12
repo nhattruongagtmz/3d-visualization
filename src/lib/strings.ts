@@ -320,4 +320,19 @@ export const strings = {
     catViewProducts: 'Xem sản phẩm',
     catOf: (n: number) => `/ ${n}`,
   },
+
+  admin: {
+    loginTitle: 'Đăng nhập quản trị',
+    loginDescription: 'Nhập mật khẩu để tiếp tục',
+    passwordLabel: 'Mật khẩu',
+    loginButton: 'Đăng nhập',
+    passwordRequired: 'Mật khẩu là bắt buộc',
+    errorWrongPassword: 'Mật khẩu không đúng. Vui lòng thử lại.',
+    logoutButton: 'Đăng xuất',
+    adminBadge: 'Quản trị viên',
+    sidebarDashboard: 'Bảng điều khiển',
+    sidebarProducts: 'Sản phẩm',
+    sidebarCategories: 'Danh mục',
+    backToStore: 'Về cửa hàng',
+  },
 }

@@ -43,13 +43,6 @@ export default function Header() {
           >
             {strings.nav.about}
           </Link>
-          <Link
-            to="/dashboard"
-            className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
-          >
-            {strings.nav.dashboard}
-          </Link>
         </div>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">

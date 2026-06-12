@@ -1,10 +1,13 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
+import { useForm, FormProvider } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { CheckCircle2, Package } from 'lucide-react'
 import OrderSummaryPanel from '../components/OrderSummaryPanel'
 import ShippingFormSection from '../components/ShippingFormSection'
 import { useCart } from '../contexts/CartContext'
 import { strings } from '../lib/strings'
+import { shippingSchema } from '../lib/schemas'
 import type { ShippingForm } from '../lib/types'
 import { Button } from '../components/ui/button'
 
@@ -12,22 +15,11 @@ export const Route = createFileRoute('/checkout')({
   component: CheckoutPage,
 })
 
-const EMPTY_FORM: ShippingForm = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  address: '',
-  city: '',
-  state: '',
-  zip: '',
-  country: '',
-}
-
 function CheckoutPage() {
   const { items, clearCart } = useCart()
-  const [form, setForm] = useState<ShippingForm>(EMPTY_FORM)
-  const [errors, setErrors] = useState<Partial<Record<keyof ShippingForm, string>>>({})
-  const [orderPlaced, setOrderPlaced] = useState<string | null>(null)
+  const [orderPlaced, setOrderPlaced] = useState<{ num: string; email: string } | null>(null)
+
+  const methods = useForm<ShippingForm>({ mode: 'onTouched', resolver: zodResolver(shippingSchema) })
 
   if (orderPlaced) {
     return (
@@ -36,12 +28,12 @@ function CheckoutPage() {
         <h1 className="text-2xl font-bold text-[var(--sea-ink)]">{strings.checkout.orderConfirmedTitle}</h1>
         <p className="mt-2 text-[var(--sea-ink-soft)]">
           {strings.checkout.orderThankYouPrefix}
-          <span className="font-mono font-semibold text-[var(--sea-ink)]">{orderPlaced}</span>
+          <span className="font-mono font-semibold text-[var(--sea-ink)]">{orderPlaced.num}</span>
           {strings.checkout.orderThankYouSuffix}
         </p>
         <p className="mt-1 text-sm text-[var(--sea-ink-soft)]">
           {strings.checkout.orderEmailPrefix}
-          {form.email}
+          {orderPlaced.email}
           {strings.checkout.orderEmailSuffix}
         </p>
         <Link to="/shop">
@@ -65,66 +57,44 @@ function CheckoutPage() {
     )
   }
 
-  function validate(): boolean {
-    const required: (keyof ShippingForm)[] = [
-      'firstName', 'lastName', 'email', 'address', 'city', 'state', 'zip', 'country',
-    ]
-    const newErrors: Partial<Record<keyof ShippingForm, string>> = {}
-    for (const field of required) {
-      if (!form[field].trim()) newErrors[field] = strings.checkout.fieldRequired
-    }
-    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      newErrors.email = strings.checkout.invalidEmail
-    }
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!validate()) return
+  function onSubmit(data: ShippingForm) {
     const orderNum = `PF-${Math.random().toString(36).substring(2, 8).toUpperCase()}`
     clearCart()
-    setOrderPlaced(orderNum)
+    setOrderPlaced({ num: orderNum, email: data.email })
   }
 
   return (
     <main className="page-wrap py-10">
       <h1 className="mb-8 text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">{strings.checkout.title}</h1>
 
-      <form onSubmit={handleSubmit} noValidate>
-        <div className="grid gap-8 lg:grid-cols-3">
-          <div className="lg:col-span-2 space-y-6">
-            <ShippingFormSection
-              form={form}
-              onChange={(field, value) => {
-                setForm((f) => ({ ...f, [field]: value }))
-                setErrors((e) => ({ ...e, [field]: undefined }))
-              }}
-              errors={errors}
-            />
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} noValidate>
+          <div className="grid gap-8 lg:grid-cols-3">
+            <div className="lg:col-span-2 space-y-6">
+              <ShippingFormSection />
 
-            <div className="rounded-xl border border-[var(--line)] p-5 space-y-3">
-              <h2 className="text-lg font-semibold text-[var(--sea-ink)]">{strings.checkout.paymentTitle}</h2>
-              <p className="text-sm text-[var(--sea-ink-soft)]">
-                {strings.checkout.paymentDemoNote}
-              </p>
+              <div className="rounded-xl border border-[var(--line)] p-5 space-y-3">
+                <h2 className="text-lg font-semibold text-[var(--sea-ink)]">{strings.checkout.paymentTitle}</h2>
+                <p className="text-sm text-[var(--sea-ink-soft)]">
+                  {strings.checkout.paymentDemoNote}
+                </p>
+              </div>
+
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-[var(--lagoon)] text-white hover:opacity-90"
+              >
+                {strings.checkout.placeOrder}
+              </Button>
             </div>
 
-            <Button
-              type="submit"
-              size="lg"
-              className="w-full bg-[var(--lagoon)] text-white hover:opacity-90"
-            >
-              {strings.checkout.placeOrder}
-            </Button>
+            <div>
+              <OrderSummaryPanel />
+            </div>
           </div>
-
-          <div>
-            <OrderSummaryPanel />
-          </div>
-        </div>
-      </form>
+        </form>
+      </FormProvider>
     </main>
   )
 }
