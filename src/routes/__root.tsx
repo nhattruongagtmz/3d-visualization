@@ -1,9 +1,10 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute, useRouterState } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import { CartProvider } from '../contexts/CartContext'
+import { strings } from '../lib/strings'
 
 import appCss from '../styles.css?url'
 
@@ -20,7 +21,23 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: strings.meta.title,
+      },
+      {
+        name: 'description',
+        content: strings.meta.description,
+      },
+      {
+        property: 'og:title',
+        content: strings.meta.ogTitle,
+      },
+      {
+        property: 'og:description',
+        content: strings.meta.ogDescription,
+      },
+      {
+        property: 'og:type',
+        content: 'website',
       },
     ],
     links: [
@@ -33,19 +50,29 @@ export const Route = createRootRoute({
   shellComponent: RootDocument,
 })
 
+function AppShell({ children }: { children: React.ReactNode }) {
+  const { location } = useRouterState()
+  if (location.pathname.startsWith('/dashboard')) {
+    return <>{children}</>
+  }
+  return (
+    <CartProvider>
+      <Header />
+      {children}
+      <Footer />
+    </CartProvider>
+  )
+}
+
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="vi" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
-        <CartProvider>
-          <Header />
-          {children}
-          <Footer />
-        </CartProvider>
+      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(212,81,26,0.2)]">
+        <AppShell>{children}</AppShell>
         <TanStackDevtools
           config={{
             position: 'bottom-right',

@@ -4,6 +4,7 @@ import ProductGrid from '../../components/ProductGrid'
 import ShopFilters from '../../components/ShopFilters'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select'
 import { PRODUCTS } from '../../lib/data'
+import { strings } from '../../lib/strings'
 import type { ShopFilters as Filters } from '../../lib/types'
 
 export const Route = createFileRoute('/shop/')({
@@ -61,10 +62,13 @@ function ShopPage() {
 
   return (
     <main className="page-wrap py-10">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">Shop</h1>
-        <p className="text-sm text-[var(--sea-ink-soft)]">
-          {filtered.length} {filtered.length === 1 ? 'product' : 'products'}
+      <div className="mb-8">
+        <p className="island-kicker mb-1">{strings.shop.eyebrow}</p>
+        <h1 className="text-balance text-3xl font-bold text-[var(--sea-ink)] md:text-4xl">
+          {strings.shop.heading}
+        </h1>
+        <p className="mt-1 text-sm text-[var(--sea-ink-soft)]">
+          {strings.shop.productCount(filtered.length)}
         </p>
       </div>
 
@@ -82,19 +86,19 @@ function ShopPage() {
               }
             >
               <SelectTrigger className="w-44 text-sm">
-                <SelectValue placeholder="Sort by" />
+                <SelectValue placeholder={strings.shop.sortPlaceholder} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="featured">Featured</SelectItem>
-                <SelectItem value="price-asc">Price: Low to High</SelectItem>
-                <SelectItem value="price-desc">Price: High to Low</SelectItem>
-                <SelectItem value="rating">Best Rated</SelectItem>
-                <SelectItem value="newest">Newest</SelectItem>
+                <SelectItem value="featured">{strings.shop.sortFeatured}</SelectItem>
+                <SelectItem value="price-asc">{strings.shop.sortPriceAsc}</SelectItem>
+                <SelectItem value="price-desc">{strings.shop.sortPriceDesc}</SelectItem>
+                <SelectItem value="rating">{strings.shop.sortRating}</SelectItem>
+                <SelectItem value="newest">{strings.shop.sortNewest}</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          <ProductGrid products={filtered} emptyMessage="No products match your filters. Try clearing some filters." />
+          <ProductGrid products={filtered} emptyMessage={strings.shop.noResults} />
         </div>
       </div>
     </main>

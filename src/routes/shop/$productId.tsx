@@ -7,6 +7,7 @@ import ProductGrid from '../../components/ProductGrid'
 import StarRating from '../../components/StarRating'
 import { useCart } from '../../contexts/CartContext'
 import { PRODUCTS } from '../../lib/data'
+import { strings } from '../../lib/strings'
 import type { Material } from '../../lib/types'
 import { cn, formatPrice } from '../../lib/utils'
 import { Badge } from '../../components/ui/badge'
@@ -27,12 +28,12 @@ export const Route = createFileRoute('/shop/$productId')({
 function ProductNotFound() {
   return (
     <main className="page-wrap py-20 text-center">
-      <h1 className="text-2xl font-bold text-[var(--sea-ink)]">Product Not Found</h1>
+      <h1 className="text-2xl font-bold text-[var(--sea-ink)]">{strings.productDetail.notFoundTitle}</h1>
       <p className="mt-2 text-[var(--sea-ink-soft)]">
-        This product doesn't exist or has been removed.
+        {strings.productDetail.notFoundDesc}
       </p>
       <Link to="/shop">
-        <Button className="mt-6">Back to Shop</Button>
+        <Button className="mt-6">{strings.productDetail.backToShop}</Button>
       </Link>
     </main>
   )
@@ -53,9 +54,9 @@ function ProductDetailPage() {
   return (
     <main className="page-wrap py-10">
       <nav className="mb-6 flex items-center gap-2 text-sm text-[var(--sea-ink-soft)]">
-        <Link to="/" className="hover:text-[var(--sea-ink)]">Home</Link>
+        <Link to="/" className="hover:text-[var(--sea-ink)]">{strings.productDetail.breadcrumbHome}</Link>
         <span>/</span>
-        <Link to="/shop" className="hover:text-[var(--sea-ink)]">Shop</Link>
+        <Link to="/shop" className="hover:text-[var(--sea-ink)]">{strings.productDetail.breadcrumbShop}</Link>
         <span>/</span>
         <span className="text-[var(--sea-ink)]">{product.name}</span>
       </nav>
@@ -75,7 +76,7 @@ function ProductDetailPage() {
                       : 'text-[var(--sea-ink-soft)] hover:text-[var(--sea-ink)]',
                   )}
                 >
-                  {tab === 'photos' ? 'Photos' : '3D View'}
+                  {tab === 'photos' ? strings.productDetail.tabPhotos : strings.productDetail.tab3D}
                 </button>
               ))}
             </div>
@@ -89,8 +90,10 @@ function ProductDetailPage() {
 
         <div className="space-y-5">
           <div>
-            <p className="island-kicker mb-1 capitalize">{product.category.replace('-', ' ')}</p>
-            <h1 className="text-2xl font-bold text-[var(--sea-ink)] md:text-3xl">{product.name}</h1>
+            <p className="island-kicker mb-1">{strings.productDetail.categoryLabels[product.category] ?? product.category.replace('-', ' ')}</p>
+            <h1 className="text-balance text-3xl font-bold text-[var(--sea-ink)] md:text-4xl">
+              {product.name}
+            </h1>
             <p className="mt-1 text-[var(--sea-ink-soft)]">{product.tagline}</p>
           </div>
 
@@ -106,7 +109,7 @@ function ProductDetailPage() {
           <div className="space-y-3">
             <div>
               <label className="mb-1.5 block text-sm font-semibold text-[var(--sea-ink)]">
-                Material
+                {strings.productDetail.materialLabel}
               </label>
               <Select
                 value={selectedMaterial}
@@ -130,27 +133,27 @@ function ProductDetailPage() {
               onClick={handleAddToCart}
             >
               <ShoppingCart className="mr-2 h-5 w-5" />
-              {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+              {product.inStock ? strings.productDetail.addToCart : strings.productDetail.outOfStock}
             </Button>
           </div>
 
           <Separator />
 
           <div className="space-y-2">
-            <h3 className="text-sm font-semibold text-[var(--sea-ink)]">Print Specs</h3>
+            <h3 className="text-sm font-semibold text-[var(--sea-ink)]">{strings.productDetail.printSpecs}</h3>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div className="flex items-center gap-2 text-[var(--sea-ink-soft)]">
                 <Layers className="h-4 w-4 flex-shrink-0" />
-                <span>Layer height: {product.layerHeight} mm</span>
+                <span>{strings.productDetail.layerHeight(product.layerHeight)}</span>
               </div>
               <div className="flex items-center gap-2 text-[var(--sea-ink-soft)]">
                 <Timer className="h-4 w-4 flex-shrink-0" />
-                <span>Print time: {product.printTime}</span>
+                <span>{strings.productDetail.printTime(product.printTime)}</span>
               </div>
               {product.supportRequired && (
                 <div className="col-span-2 flex items-center gap-2 text-amber-600">
                   <AlertCircle className="h-4 w-4 flex-shrink-0" />
-                  <span>Requires supports</span>
+                  <span>{strings.productDetail.requiresSupports}</span>
                 </div>
               )}
             </div>
@@ -159,12 +162,12 @@ function ProductDetailPage() {
           <div className="space-y-2">
             <h3 className="text-sm font-semibold text-[var(--sea-ink)]">
               <Printer className="mr-1.5 inline h-4 w-4" />
-              Printer Compatibility
+              {strings.productDetail.printerCompat}
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {product.printerCompatibility.map((p) => (
                 <Badge key={p} variant="outline" className="border-[var(--lagoon)] text-[var(--lagoon)] text-xs">
-                  {p === 'All' ? 'All Bambu Lab' : p}
+                  {p === 'All' ? strings.productDetail.allBambu : p}
                 </Badge>
               ))}
             </div>
@@ -182,7 +185,7 @@ function ProductDetailPage() {
 
       {related.length > 0 && (
         <section className="mt-16">
-          <h2 className="mb-6 text-xl font-bold text-[var(--sea-ink)]">Related Products</h2>
+          <h2 className="mb-6 text-xl font-bold text-[var(--sea-ink)]">{strings.productDetail.relatedProducts}</h2>
           <ProductGrid products={related} />
         </section>
       )}

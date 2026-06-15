@@ -1,5 +1,6 @@
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import { useCart } from '../contexts/CartContext'
+import { strings } from '../lib/strings'
 import { formatPrice } from '../lib/utils'
 import type { CartItem } from '../lib/types'
 import { Button } from './ui/button'
@@ -24,7 +25,7 @@ export default function CartItemRow({ item }: { item: CartItem }) {
               size="icon"
               className="h-6 w-6"
               onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-              aria-label="Decrease quantity"
+              aria-label={strings.cart.decreaseQty}
             >
               <Minus className="h-3 w-3" />
             </Button>
@@ -34,7 +35,7 @@ export default function CartItemRow({ item }: { item: CartItem }) {
               size="icon"
               className="h-6 w-6"
               onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-              aria-label="Increase quantity"
+              aria-label={strings.cart.increaseQty}
             >
               <Plus className="h-3 w-3" />
             </Button>
@@ -48,7 +49,7 @@ export default function CartItemRow({ item }: { item: CartItem }) {
               size="icon"
               className="h-6 w-6 text-[var(--sea-ink-soft)] hover:text-destructive"
               onClick={() => removeItem(item.product.id)}
-              aria-label="Remove item"
+              aria-label={strings.cart.removeItem}
             >
               <Trash2 className="h-3 w-3" />
             </Button>

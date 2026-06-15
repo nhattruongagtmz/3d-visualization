@@ -31,3 +31,7 @@ This is a **TanStack Start** (SSR React) app — a 3D-print product storefront. 
 **Theme** — Dark/light/auto mode. The theme init script in `__root.tsx` runs before React hydrates to avoid flash. Theme class is applied to `<html>`.
 
 **Shadcn components** live in `src/components/ui/`. Business components (ProductCard, CartDrawer, etc.) live in `src/components/`.
+
+## Language
+
+All user-facing text must be in **Vietnamese**. Never hardcode display strings in components — add them to `src/lib/strings.ts` and reference via the `strings` object. Product names, taglines, and descriptions live in `src/lib/data.ts` and must also be in Vietnamese.
