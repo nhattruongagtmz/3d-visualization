@@ -11,13 +11,17 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PreviewRouteImport } from './routes/preview'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CreateProductRouteImport } from './routes/create-product'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AdminLoginRouteImport } from './routes/admin-login'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShopIndexRouteImport } from './routes/shop/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as ShopProductIdRouteImport } from './routes/shop/$productId'
+import { Route as DashboardProductsRouteImport } from './routes/dashboard/products'
+import { Route as DashboardCategoriesRouteImport } from './routes/dashboard/categories'
 
 const PreviewRoute = PreviewRouteImport.update({
   id: '/preview',
@@ -27,6 +31,11 @@ const PreviewRoute = PreviewRouteImport.update({
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateProductRoute = CreateProductRouteImport.update({
+  id: '/create-product',
+  path: '/create-product',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -59,10 +68,25 @@ const ShopIndexRoute = ShopIndexRouteImport.update({
   path: '/shop/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const ShopProductIdRoute = ShopProductIdRouteImport.update({
   id: '/shop/$productId',
   path: '/shop/$productId',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardProductsRoute = DashboardProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardCategoriesRoute = DashboardCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => DashboardRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -71,9 +95,13 @@ export interface FileRoutesByFullPath {
   '/admin-login': typeof AdminLoginRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
-  '/dashboard': typeof DashboardRoute
+  '/create-product': typeof CreateProductRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/preview': typeof PreviewRoute
+  '/dashboard/categories': typeof DashboardCategoriesRoute
+  '/dashboard/products': typeof DashboardProductsRoute
   '/shop/$productId': typeof ShopProductIdRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/shop/': typeof ShopIndexRoute
 }
 export interface FileRoutesByTo {
@@ -82,9 +110,12 @@ export interface FileRoutesByTo {
   '/admin-login': typeof AdminLoginRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
-  '/dashboard': typeof DashboardRoute
+  '/create-product': typeof CreateProductRoute
   '/preview': typeof PreviewRoute
+  '/dashboard/categories': typeof DashboardCategoriesRoute
+  '/dashboard/products': typeof DashboardProductsRoute
   '/shop/$productId': typeof ShopProductIdRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/shop': typeof ShopIndexRoute
 }
 export interface FileRoutesById {
@@ -94,9 +125,13 @@ export interface FileRoutesById {
   '/admin-login': typeof AdminLoginRoute
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
-  '/dashboard': typeof DashboardRoute
+  '/create-product': typeof CreateProductRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/preview': typeof PreviewRoute
+  '/dashboard/categories': typeof DashboardCategoriesRoute
+  '/dashboard/products': typeof DashboardProductsRoute
   '/shop/$productId': typeof ShopProductIdRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/shop/': typeof ShopIndexRoute
 }
 export interface FileRouteTypes {
@@ -107,9 +142,13 @@ export interface FileRouteTypes {
     | '/admin-login'
     | '/cart'
     | '/checkout'
+    | '/create-product'
     | '/dashboard'
     | '/preview'
+    | '/dashboard/categories'
+    | '/dashboard/products'
     | '/shop/$productId'
+    | '/dashboard/'
     | '/shop/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -118,9 +157,12 @@ export interface FileRouteTypes {
     | '/admin-login'
     | '/cart'
     | '/checkout'
-    | '/dashboard'
+    | '/create-product'
     | '/preview'
+    | '/dashboard/categories'
+    | '/dashboard/products'
     | '/shop/$productId'
+    | '/dashboard'
     | '/shop'
   id:
     | '__root__'
@@ -129,9 +171,13 @@ export interface FileRouteTypes {
     | '/admin-login'
     | '/cart'
     | '/checkout'
+    | '/create-product'
     | '/dashboard'
     | '/preview'
+    | '/dashboard/categories'
+    | '/dashboard/products'
     | '/shop/$productId'
+    | '/dashboard/'
     | '/shop/'
   fileRoutesById: FileRoutesById
 }
@@ -141,7 +187,8 @@ export interface RootRouteChildren {
   AdminLoginRoute: typeof AdminLoginRoute
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
-  DashboardRoute: typeof DashboardRoute
+  CreateProductRoute: typeof CreateProductRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   PreviewRoute: typeof PreviewRoute
   ShopProductIdRoute: typeof ShopProductIdRoute
   ShopIndexRoute: typeof ShopIndexRoute
@@ -161,6 +208,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create-product': {
+      id: '/create-product'
+      path: '/create-product'
+      fullPath: '/create-product'
+      preLoaderRoute: typeof CreateProductRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout': {
@@ -205,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/shop/$productId': {
       id: '/shop/$productId'
       path: '/shop/$productId'
@@ -212,8 +273,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/products': {
+      id: '/dashboard/products'
+      path: '/products'
+      fullPath: '/dashboard/products'
+      preLoaderRoute: typeof DashboardProductsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/categories': {
+      id: '/dashboard/categories'
+      path: '/categories'
+      fullPath: '/dashboard/categories'
+      preLoaderRoute: typeof DashboardCategoriesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
   }
 }
+
+interface DashboardRouteChildren {
+  DashboardCategoriesRoute: typeof DashboardCategoriesRoute
+  DashboardProductsRoute: typeof DashboardProductsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardCategoriesRoute: DashboardCategoriesRoute,
+  DashboardProductsRoute: DashboardProductsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -221,7 +312,8 @@ const rootRouteChildren: RootRouteChildren = {
   AdminLoginRoute: AdminLoginRoute,
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
-  DashboardRoute: DashboardRoute,
+  CreateProductRoute: CreateProductRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   PreviewRoute: PreviewRoute,
   ShopProductIdRoute: ShopProductIdRoute,
   ShopIndexRoute: ShopIndexRoute,

@@ -22,7 +22,17 @@
       "mcp__playwright__browser_navigate",
       "mcp__playwright__browser_evaluate",
       "Bash(npx tsc *)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git *)",
+      "Bash(npm test *)",
+      "Bash(git merge-base *)",
+      "Bash(gh pr create --title 'feat: add Claude Code skills for scaffolding TanStack form and query components' --body ' *)",
+      "PowerShell(choco *)",
+      "PowerShell($url = \"https://github.com/cli/cli/releases/download/v2.94.0/gh_2.94.0_windows_amd64.msi\"; $dest = \"$env:TEMP\\\\gh_installer.msi\"; Write-Host \"Downloading...\"; Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing; Write-Host \"Downloaded to $dest\"; Write-Host \"Installing...\"; Start-Process msiexec.exe -ArgumentList \"/i `\"$dest`\" /quiet /norestart\" -Wait; Write-Host \"Done.\")",
+      "PowerShell(gh *)",
+      "PowerShell(Get-ChildItem *)"
     ]
   },
   "enabledMcpjsonServers": [
