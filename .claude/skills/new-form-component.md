@@ -60,6 +60,7 @@ export type <ComponentName>FormValues = z.infer<typeof <componentName>Schema>
 - `email`: `z.string().trim().min(1, 'Required').email('Invalid email')`
 - `number`: `z.coerce.number()` — add `.min(n)` / `.max(n)` if constraints given
 - `select` with known options: `z.enum(['option1', 'option2', ...])`
+- `select` with dynamic/API-loaded options: `z.string().min(1, 'Required')`
 - `checkbox` / `switch`: `z.boolean()`
 - `textarea`: `z.string().trim().min(1, 'Required')` (or `.min(10, ...)` if long text)
 - Optional fields: append `.optional()`
@@ -78,6 +79,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+// Add when form has more than 3 fields:
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 // Add only the Shadcn components actually used by the fields
 ```
 
@@ -91,16 +96,26 @@ const {
 } = useForm<<ComponentName>FormValues>({
   mode: 'onTouched',
   resolver: zodResolver(<componentName>Schema),
+  // defaultValues: { /* set initial values for boolean fields (false) and optional fields */ },
 })
 ```
 
 **Field wiring rules (apply strictly):**
 
-`text | email | number | textarea` — use `register`:
+`text | email | number` — use `register`:
 ```tsx
 <Input
   id="fieldName"
   type="text" // or email, number
+  aria-invalid={!!errors.fieldName}
+  {...register('fieldName')}
+/>
+```
+
+`textarea` — use `register` with Shadcn `Textarea`:
+```tsx
+<Textarea
+  id="fieldName"
   aria-invalid={!!errors.fieldName}
   {...register('fieldName')}
 />
@@ -133,6 +148,7 @@ const {
     <Checkbox
       checked={field.value}
       onCheckedChange={field.onChange}
+      aria-invalid={!!errors.fieldName}
     />
   )}
 />
@@ -147,6 +163,7 @@ const {
     <Switch
       checked={field.value}
       onCheckedChange={field.onChange}
+      aria-invalid={!!errors.fieldName}
     />
   )}
 />
@@ -164,9 +181,6 @@ Place `<FieldError message={errors.fieldName?.message} />` directly after every 
 
 **Use a `Section` wrapper when the form has more than 3 fields:**
 ```tsx
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <Card>
@@ -188,9 +202,9 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 ```
 
 **Submit handler shape:**
-- Navigate: `const navigate = useNavigate(); function onSubmit(data) { navigate({ to: '/path' }) }`
+- Navigate: `const navigate = useNavigate(); async function onSubmit(data) { /* await API call here if needed */ navigate({ to: '/path' }) }`
 - Success state: `const [submitted, setSubmitted] = useState(false); function onSubmit(data) { setSubmitted(true) }`
-- Callback: `function onSubmit(data) { onSuccess(data) }`
+- Callback: accept `onSuccess` as a prop — `function MyForm({ onSuccess }: { onSuccess: (data: FormValues) => void }) { ... }` then `function onSubmit(data) { onSuccess(data) }`
 
 **String literals** — leave all display text as inline strings with `// TODO: extract to your strings file` comment on the same line.
 
