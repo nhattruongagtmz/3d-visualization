@@ -52,9 +52,10 @@ interface <Item>DTO {
   // never use `any`
 }
 
-const <item>Keys = {
-  all: ['<items>'] as const,
-  detail: (id: string) => ['<items>', id] as const,
+const entityKeys = {
+  all: ['entities'] as const,
+  list: (filters?: { page?: number }) => [...entityKeys.all, filters] as const,
+  detail: (id: string) => ['entities', id] as const,
 } as const
 ```
 
@@ -95,7 +96,7 @@ async function fetch<Item>(id: string): Promise<<Item>DTO> {
 - Always check `if (!res.ok) throw new Error(res.statusText)`
 - Return type is always explicit — never `any` or implicit
 - Accept path params as function arguments, not closures
-- If pagination/search needed, accept as additional arguments: `(page: number, search: string)`
+- If pagination is needed, accept `page: number` as a function argument (server-side). Text search is always client-side filter on already-fetched data — do NOT pass search string to the queryFn.
 
 ---
 
@@ -109,24 +110,29 @@ import { useQuery } from '@tanstack/react-query'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '@/components/ui/button'
 // Add only the Shadcn display components actually needed
+// Add when text search is requested:
+import { Input } from '@/components/ui/input'
 ```
 
 **Component structure — always this shape:**
 ```tsx
-function <ComponentName>() {
+function ComponentName() {
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: <item>Keys.all,
-    queryFn: fetch<Items>,
+    queryKey: entityKeys.all,
+    queryFn: fetchEntities, /* replace "Entities" with your entity name */
   })
 
-  if (isLoading) return <<ComponentName>Skeleton />
-  if (isError) return <<ComponentName>Error onRetry={refetch} />
+  if (isLoading) return <EntitySkeleton /> /* replace with your entity name */
+  if (isError) return <EntityError onRetry={refetch} /> /* replace with your entity name */
+  if (!data) return null
 
   return (
-    // display markup goes here — data is guaranteed non-undefined at this point
+    // display markup goes here
   )
 }
 ```
+
+**For `detail` shape components:** the component must accept an `id` prop — use `function ComponentName({ id }: { id: string })`. The `id` comes from the value the user named in question 2.
 
 **Loading skeleton — sized to match display shape:**
 
@@ -212,8 +218,8 @@ Pagination:
 ```tsx
 const [page, setPage] = useState(1)
 const { data, isLoading, isError, refetch } = useQuery({
-  queryKey: [...<item>Keys.all, page],
-  queryFn: () => fetch<Items>(page),
+  queryKey: entityKeys.list({ page }),
+  queryFn: () => fetchEntities(page), /* replace "Entities" with your entity name */
 })
 // Add prev/next buttons below the display
 ```
@@ -222,6 +228,7 @@ Text search (client-side filter):
 ```tsx
 const [search, setSearch] = useState('')
 // After data is loaded:
+// Replace 'name' with the primary text field from question 4
 const filtered = data.filter(item =>
   item.name.toLowerCase().includes(search.toLowerCase())
 )
@@ -238,6 +245,8 @@ const sorted = [...(data ?? [])].sort((a, b) => {
   if (typeof av === 'string') return av.localeCompare(bv as string) * sortDir
   return ((av as number) - (bv as number)) * sortDir
 })
+// Note: this comparator handles string and number fields only.
+// For Date fields, add: if (av instanceof Date) return (av.getTime() - (bv as Date).getTime()) * sortDir
 ```
 
 **String literals** — leave all display text as inline strings with `// TODO: extract to your strings file` comment on the same line.
@@ -246,8 +255,8 @@ const sorted = [...(data ?? [])].sort((a, b) => {
 
 ### Block 4 — Placement instructions
 
-After the three code blocks, give a short numbered list:
-1. Where to place the component file
+After the code blocks above, give a short numbered list:
+1. Suggest `src/components/ComponentName.tsx` as the default location, or `src/features/entity/` if the project uses a feature-folder structure — tell the user to adjust to their own conventions.
 2. Confirm `@tanstack/react-query` is installed (`npm i @tanstack/react-query`)
 3. Confirm `QueryClientProvider` wraps the app (if not already set up, show the minimal setup):
 ```tsx
