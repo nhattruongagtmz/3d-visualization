@@ -62,7 +62,7 @@ export type <ComponentName>FormValues = z.infer<typeof <componentName>Schema>
 - `select` with known options: `z.enum(['option1', 'option2', ...])`
 - `select` with dynamic/API-loaded options: `z.string().min(1, 'Required')`
 - `checkbox` / `switch`: `z.boolean()`
-- `textarea`: `z.string().trim().min(1, 'Required')` (or `.min(10, ...)` if long text)
+- `textarea`: `z.string().trim().min(1, 'Required')` — use higher `.min()` only if the user specifies a minimum length in question 2
 - Optional fields: append `.optional()`
 - Never use `z.any()`
 

@@ -66,6 +66,7 @@ const entityKeys = {
 - If endpoint has path params, include the `detail` key; if list-only, omit it
 - Never use inline string arrays in `useQuery` — always reference this constant
 - Never use `any`
+- Omit the `list` key entirely when neither pagination nor server-side search is requested — only include it when the user answered yes to pagination in question 5
 
 ---
 
