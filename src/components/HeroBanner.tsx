@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { ArrowRight, Printer } from 'lucide-react'
-import { strings } from '../lib/strings'
+import { strings } from '@lib/strings'
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 

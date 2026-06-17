@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
-import { PRODUCTS } from '../lib/data'
-import { strings } from '../lib/strings'
+import { PRODUCTS } from '@lib/data'
+import { strings } from '@lib/strings'
 import ProductCard from './ProductCard'
 import Reveal from './Reveal'
 

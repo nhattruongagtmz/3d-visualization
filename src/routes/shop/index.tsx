@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useMemo, useState } from 'react'
-import ProductGrid from '../../components/ProductGrid'
-import ShopFilters from '../../components/ShopFilters'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../components/ui/select'
-import { PRODUCTS } from '../../lib/data'
-import { strings } from '../../lib/strings'
-import type { ShopFilters as Filters } from '../../lib/types'
+import ProductGrid from '@components/ProductGrid'
+import ShopFilters from '@components/ShopFilters'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@components/ui/select'
+import { PRODUCTS } from '@lib/data'
+import { strings } from '@lib/strings'
+import type { ShopFilters as Filters } from '@lib/types'
 
 export const Route = createFileRoute('/shop/')({
   component: ShopPage,

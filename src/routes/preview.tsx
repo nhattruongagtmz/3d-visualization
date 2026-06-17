@@ -4,10 +4,10 @@ import { UploadCloud } from 'lucide-react'
 import { useGLTF } from '@react-three/drei'
 import { useLoader } from '@react-three/fiber'
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js'
-import { Button } from '../components/ui/button'
-import { cn } from '../lib/utils'
-import { strings } from '../lib/strings'
-import PreviewViewer3D from '../components/PreviewViewer3D'
+import { Button } from '@components/ui/button'
+import { cn } from '@lib/utils'
+import { strings } from '@lib/strings'
+import PreviewViewer3D from '@components/PreviewViewer3D'
 
 export const Route = createFileRoute('/preview')({
   component: PreviewPage,

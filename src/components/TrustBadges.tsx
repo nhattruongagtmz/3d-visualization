@@ -1,5 +1,5 @@
 import { Printer, Shield, Truck } from 'lucide-react'
-import { strings } from '../lib/strings'
+import { strings } from '@lib/strings'
 import Reveal from './Reveal'
 
 const ICONS = [Printer, Shield, Truck]

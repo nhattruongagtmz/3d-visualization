@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react'
-import type { CartContextValue, CartItem, Material, Product } from '../lib/types'
+import type { CartContextValue, CartItem, Material, Product } from '@lib/types'
 
 type CartAction =
   | { type: 'ADD_ITEM'; product: Product; material: Material }

@@ -1,8 +1,8 @@
 import { Minus, Plus, Trash2 } from 'lucide-react'
-import { useCart } from '../contexts/CartContext'
-import { strings } from '../lib/strings'
-import { formatPrice } from '../lib/utils'
-import type { CartItem } from '../lib/types'
+import { useCart } from '@contexts/CartContext'
+import { strings } from '@lib/strings'
+import { formatPrice } from '@lib/utils'
+import type { CartItem } from '@lib/types'
 import { Button } from './ui/button'
 
 export default function CartItemRow({ item }: { item: CartItem }) {

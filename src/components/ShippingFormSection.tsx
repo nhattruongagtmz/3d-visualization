@@ -1,6 +1,6 @@
 import { useFormContext, type UseFormRegisterReturn } from 'react-hook-form'
-import type { ShippingForm } from '../lib/types'
-import { strings } from '../lib/strings'
+import type { ShippingForm } from '@lib/types'
+import { strings } from '@lib/strings'
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 

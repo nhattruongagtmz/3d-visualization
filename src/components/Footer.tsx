@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { strings } from '../lib/strings'
+import { strings } from '@lib/strings'
 
 export default function Footer() {
   const year = new Date().getFullYear()

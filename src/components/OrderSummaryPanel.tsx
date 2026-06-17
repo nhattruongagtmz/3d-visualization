@@ -1,6 +1,6 @@
-import { useCart } from '../contexts/CartContext'
-import { strings } from '../lib/strings'
-import { formatPrice } from '../lib/utils'
+import { useCart } from '@contexts/CartContext'
+import { strings } from '@lib/strings'
+import { formatPrice } from '@lib/utils'
 import { Separator } from './ui/separator'
 
 export default function OrderSummaryPanel() {

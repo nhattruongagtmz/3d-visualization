@@ -2,11 +2,11 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { useMemo } from 'react'
 import { motion } from 'motion/react'
 import { ChevronRight, Home, Gamepad2, Wrench, Palette, Settings2, Star } from 'lucide-react'
-import { CATEGORIES, PRODUCTS } from '../../lib/data'
-import { strings } from '../../lib/strings'
-import { formatPrice, formatRating } from '../../lib/utils'
-import { Card, CardContent } from '../../components/ui/card'
-import { Separator } from '../../components/ui/separator'
+import { CATEGORIES, PRODUCTS } from '@lib/data'
+import { strings } from '@lib/strings'
+import { formatPrice, formatRating } from '@lib/utils'
+import { Card, CardContent } from '@components/ui/card'
+import { Separator } from '@components/ui/separator'
 
 export const Route = createFileRoute('/dashboard/categories')({
   component: CategoriesPage,

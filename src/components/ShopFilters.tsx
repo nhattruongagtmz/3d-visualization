@@ -1,6 +1,6 @@
 import { X } from 'lucide-react'
-import type { Category, Material, PrinterCompatibility, ShopFilters as Filters } from '../lib/types'
-import { strings } from '../lib/strings'
+import type { Category, Material, PrinterCompatibility, ShopFilters as Filters } from '@lib/types'
+import { strings } from '@lib/strings'
 import FilterCheckboxGroup from './FilterCheckboxGroup'
 import PriceRangeSlider from './PriceRangeSlider'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion'

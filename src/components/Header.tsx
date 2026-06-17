@@ -1,12 +1,12 @@
-import { Link } from '@tanstack/react-router'
-import { ShoppingBag } from 'lucide-react'
-import { useCart } from '../contexts/CartContext'
-import { strings } from '../lib/strings'
-import CartDrawer from './CartDrawer'
-import ThemeToggle from './ThemeToggle'
+import { Link } from "@tanstack/react-router";
+import { ShoppingBag } from "lucide-react";
+import { useCart } from "@contexts/CartContext";
+import { strings } from "@lib/strings";
+import CartDrawer from "./CartDrawer";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
-  const { openCart, totalItems } = useCart()
+  const { openCart, totalItems } = useCart();
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[var(--header-bg)] px-4 backdrop-blur-lg">
@@ -25,23 +25,30 @@ export default function Header() {
           <Link
             to="/"
             className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
+            activeProps={{ className: "nav-link is-active" }}
           >
             {strings.nav.home}
           </Link>
           <Link
             to="/shop"
             className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
+            activeProps={{ className: "nav-link is-active" }}
           >
             {strings.nav.shop}
           </Link>
           <Link
             to="/about"
             className="nav-link"
-            activeProps={{ className: 'nav-link is-active' }}
+            activeProps={{ className: "nav-link is-active" }}
           >
             {strings.nav.about}
+          </Link>
+          <Link
+            to="/dashboard"
+            className="nav-link"
+            activeProps={{ className: "nav-link is-active" }}
+          >
+            {strings.nav.dashboard}
           </Link>
         </div>
 
@@ -54,7 +61,7 @@ export default function Header() {
             <ShoppingBag className="h-6 w-6" />
             {totalItems > 0 && (
               <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[var(--lagoon)] text-[10px] font-bold text-white">
-                {totalItems > 9 ? '9+' : totalItems}
+                {totalItems > 9 ? "9+" : totalItems}
               </span>
             )}
           </button>
@@ -65,5 +72,5 @@ export default function Header() {
 
       <CartDrawer />
     </header>
-  )
+  );
 }

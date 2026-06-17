@@ -1,4 +1,4 @@
-import { formatPrice } from '../lib/utils'
+import { formatPrice } from '@lib/utils'
 import { Slider } from './ui/slider'
 
 interface PriceRangeSliderProps {
