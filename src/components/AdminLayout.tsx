@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useRouterState } from '@tanstack/react-router'
 import { ChevronRight, LayoutDashboard, LogOut, Menu, Package, Plus, ShieldCheck, Tag, X } from 'lucide-react'
-import { strings } from '../lib/strings'
+import { strings } from '@lib/strings'
 import { Button } from './ui/button'
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet'
 

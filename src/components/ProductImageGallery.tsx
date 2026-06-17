@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ZoomIn } from 'lucide-react'
-import { cn } from '../lib/utils'
+import { cn } from '@lib/utils'
 import { Dialog, DialogContent } from './ui/dialog'
 
 export default function ProductImageGallery({ images, name }: { images: string[]; name: string }) {

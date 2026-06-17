@@ -1,5 +1,5 @@
 import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router'
-import AdminLoginScreen from '../components/AdminLoginScreen'
+import AdminLoginScreen from '@components/AdminLoginScreen'
 
 const ADMIN_PASSWORD = 'admin'
 const SESSION_KEY = 'admin_auth'

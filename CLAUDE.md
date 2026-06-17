@@ -26,7 +26,14 @@ This is a **TanStack Start** (SSR React) app — a 3D-print product storefront. 
 
 **Cart state** — Managed via React Context in `src/contexts/CartContext.tsx`. Cart is in-memory only (no persistence). The `<CartDrawer>` is rendered inside the Header.
 
-**Path aliases** — Both `#/*` and `@/*` resolve to `src/*` (configured in `tsconfig.json` and `vite.config.ts`).
+**Path aliases** — Always use aliases for imports; never use relative `../` or `../../` paths for cross-directory imports. Available aliases:
+- `@lib/*` → `src/lib/`
+- `@components/*` → `src/components/`
+- `@contexts/*` → `src/contexts/`
+- `@routes/*` → `src/routes/`
+- `@/*` → `src/` (for root assets, e.g. `@/styles.css?url`)
+
+Same-directory `./` imports are fine. Do not edit `src/routeTree.gen.ts` (auto-generated).
 
 **Theme** — Dark/light/auto mode. The theme init script in `__root.tsx` runs before React hydrates to avoid flash. Theme class is applied to `<html>`.
 

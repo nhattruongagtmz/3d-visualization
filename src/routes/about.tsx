@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { strings } from '../lib/strings'
+import { strings } from '@lib/strings'
 
 export const Route = createFileRoute('/about')({
   component: About,

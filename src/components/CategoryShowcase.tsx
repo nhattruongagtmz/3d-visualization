@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import { ArrowRight, Gamepad2, Home, Palette, Settings2, Wrench } from 'lucide-react'
-import { CATEGORIES } from '../lib/data'
-import { strings } from '../lib/strings'
+import { CATEGORIES } from '@lib/data'
+import { strings } from '@lib/strings'
 import Reveal from './Reveal'
 
 const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {

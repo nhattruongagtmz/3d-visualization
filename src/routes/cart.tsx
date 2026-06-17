@@ -1,11 +1,11 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { ShoppingBag } from 'lucide-react'
-import CartItemRow from '../components/CartItemRow'
-import CartSummary from '../components/CartSummary'
-import { useCart } from '../contexts/CartContext'
-import { strings } from '../lib/strings'
-import { Button } from '../components/ui/button'
-import { Separator } from '../components/ui/separator'
+import CartItemRow from '@components/CartItemRow'
+import CartSummary from '@components/CartSummary'
+import { useCart } from '@contexts/CartContext'
+import { strings } from '@lib/strings'
+import { Button } from '@components/ui/button'
+import { Separator } from '@components/ui/separator'
 
 export const Route = createFileRoute('/cart')({
   component: CartPage,

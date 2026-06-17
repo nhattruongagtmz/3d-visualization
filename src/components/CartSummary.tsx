@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router'
-import { useCart } from '../contexts/CartContext'
-import { strings } from '../lib/strings'
-import { formatPrice } from '../lib/utils'
+import { useCart } from '@contexts/CartContext'
+import { strings } from '@lib/strings'
+import { formatPrice } from '@lib/utils'
 import { Button } from './ui/button'
 import { Separator } from './ui/separator'
 

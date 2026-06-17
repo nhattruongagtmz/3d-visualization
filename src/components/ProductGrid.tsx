@@ -1,5 +1,5 @@
 import { PackageOpen } from 'lucide-react'
-import type { Product } from '../lib/types'
+import type { Product } from '@lib/types'
 import ProductCard from './ProductCard'
 
 interface ProductGridProps {

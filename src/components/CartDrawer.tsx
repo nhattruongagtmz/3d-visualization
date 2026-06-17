@@ -1,6 +1,6 @@
 import { ShoppingBag } from 'lucide-react'
-import { useCart } from '../contexts/CartContext'
-import { strings } from '../lib/strings'
+import { useCart } from '@contexts/CartContext'
+import { strings } from '@lib/strings'
 import CartItemRow from './CartItemRow'
 import CartSummary from './CartSummary'
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from './ui/sheet'

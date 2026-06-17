@@ -1,8 +1,9 @@
+import { Link } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { z } from 'zod'
-import { strings } from '../lib/strings'
-import { adminLoginSchema } from '../lib/schemas'
+import { strings } from '@lib/strings'
+import { adminLoginSchema } from '@lib/schemas'
 import { Button } from './ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Input } from './ui/input'
@@ -61,6 +62,12 @@ export default function AdminLoginScreen({ onLogin }: AdminLoginScreenProps) {
             <Button type="submit" className="w-full">
               {strings.admin.loginButton}
             </Button>
+            <Link
+              to="/"
+              className="block w-full text-center text-sm text-[var(--sea-ink-soft)] hover:text-[var(--sea-ink)] transition-colors"
+            >
+              ← {strings.admin.backToStore}
+            </Link>
           </form>
         </CardContent>
       </Card>
