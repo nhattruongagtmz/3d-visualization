@@ -272,6 +272,27 @@ export const strings = {
     pageTitle: 'Bảng điều khiển',
     pageSubtitle: 'Dữ liệu tổng quan từ danh mục sản phẩm PrintForge.',
 
+    // Welcome banner
+    welcomeHeading: 'Xin chào, Admin 👋',
+    viewStore: 'Xem cửa hàng',
+    exportReport: 'Xuất báo cáo',
+    exportReportSoon: 'Sắp ra mắt',
+
+    // Activity feed
+    recentActivity: 'Hoạt động gần đây',
+    updatedAt: 'Cập nhật lúc',
+    activityView1: '<strong>Người dùng</strong> đã xem <strong>Bình Hoa Hình Học</strong>',
+    activityOrder1: '<strong>Đơn hàng mới</strong> — Móc Tường Lục Giác × 2',
+    activityReview1: '<strong>Đánh giá mới</strong> ★4.9 trên Rồng Nghệ Thuật',
+    activityPrint1: '<strong>In xong</strong> — Đèn Bàn Hình Học',
+    activityView2: '<strong>Người dùng</strong> đã xem <strong>Ốp Lưng Lục Giác</strong>',
+    activityOrder2: '<strong>Đơn hàng mới</strong> — Con Quay Fidget × 3',
+    activityReview2: '<strong>Đánh giá mới</strong> ★5.0 trên Bình Hoa',
+    activityPrint2: '<strong>In xong</strong> — Tượng Điêu Khắc Tối Giản',
+
+    // KPI trends
+    vsLastMonth: 'vs tháng trước',
+
     tabOverview: 'Tổng quan',
     tabProducts: 'Sản phẩm',
     tabCategories: 'Danh mục',
@@ -284,6 +305,17 @@ export const strings = {
     kpiInStockBadge: 'Tất cả còn hàng',
     kpiReviewsUnit: 'lượt',
     kpiHoursUnit: 'giờ',
+
+    // Overview tab
+    topRatedProducts: 'Sản phẩm xếp hạng cao nhất',
+    viewAllProducts: 'Xem tất cả →',
+    quickStats: 'Thống kê nhanh',
+    avgPrice: 'Giá TB',
+    avgHours: 'Giờ in TB',
+    noSupportPct: 'Không cần đế đỡ',
+    universalCompatPct: 'Tương thích toàn bộ',
+    materialBreakdown: 'Vật liệu in',
+    categoryDist: 'Phân phối danh mục',
 
     sectionCategoryDist: 'Phân bổ danh mục',
     sectionMaterials: 'Vật liệu phổ biến',
@@ -299,6 +331,30 @@ export const strings = {
     specAvgPrintTime: 'Thời gian in TB',
     specUniversalCompat: 'Tương thích tất cả máy',
     specLayerHeights: 'Độ dày lớp in',
+
+    // Products table (full tab)
+    colName: 'Tên sản phẩm',
+    colCategory: 'Danh mục',
+    colMaterial: 'Vật liệu',
+    colPrice: 'Giá',
+    colRating: 'Đánh giá',
+    colHours: 'Giờ in',
+    colStatus: 'Trạng thái',
+    searchPlaceholder: 'Tìm kiếm sản phẩm...',
+    allCategories: 'Tất cả danh mục',
+    showingOf: 'Hiển thị',
+    clearFilters: 'Xóa bộ lọc',
+    viewProduct: 'Xem',
+
+    // Status badges
+    statusFeatured: 'Nổi bật',
+    statusActive: 'Hoạt động',
+
+    // Breadcrumb
+    breadcrumbDashboard: 'Dashboard',
+
+    // Notifications
+    notifications: 'Thông báo',
 
     tableTitle: 'Tất cả sản phẩm',
     tableSearch: 'Tìm sản phẩm...',
@@ -321,6 +377,67 @@ export const strings = {
     catOf: (n: number) => `/ ${n}`,
   },
 
+  createProduct: {
+    pageTitle: 'Tạo sản phẩm mới',
+    back: '← Về bảng điều khiển',
+    submitBtn: 'Tạo sản phẩm',
+
+    sBasic: 'Thông tin cơ bản',
+    sPricing: 'Giá & Trạng thái',
+    sClassify: 'Phân loại',
+    sMaterials: 'Vật liệu in',
+    sPrinters: 'Máy in tương thích',
+    sPrintSpecs: 'Thông số in',
+    sMedia: 'Hình ảnh & Mô hình',
+    sMeta: 'Tags',
+
+    fName: 'Tên sản phẩm',
+    fTagline: 'Tagline',
+    fDescription: 'Mô tả',
+    fPrice: 'Giá (USD)',
+    fCategory: 'Danh mục',
+    fLayerHeight: 'Độ dày lớp in',
+    fPrintTime: 'Thời gian in',
+    fSupportRequired: 'Cần đế đỡ',
+    fFeatured: 'Sản phẩm nổi bật',
+    fInStock: 'Còn hàng',
+    fImageUrls: 'URL hình ảnh',
+    fImageUrlsHint: 'Mỗi dòng một URL',
+    fModelUrl: 'URL mô hình 3D',
+    fModelUrlHint: 'Tùy chọn — GLB hoặc GLTF',
+    fTags: 'Tags',
+    fTagsHint: 'Phân cách bởi dấu phẩy',
+
+    pName: 'Vd: Bình Hoa Hình Học Gợn Sóng',
+    pTagline: 'Vd: Thiết kế tối giản, độc đáo',
+    pDescription: 'Mô tả chi tiết về sản phẩm...',
+    pPrice: '18.99',
+    pPrintTime: 'Vd: ~4h 30m',
+    pImageUrls: 'https://images.unsplash.com/photo-xxx?w=600&q=80',
+    pModelUrl: '/models/product.glb',
+    pTags: 'geometric, minimalist, home decor',
+
+    layerHeightLabels: {
+      '0.1': '0.10 mm — Chi tiết cao',
+      '0.15': '0.15 mm — Cân bằng',
+      '0.2': '0.20 mm — Tiêu chuẩn',
+      '0.25': '0.25 mm — Nhanh',
+    } as Record<string, string>,
+
+    successTitle: 'Sản phẩm đã được tạo!',
+    successDesc: (name: string) => `"${name}" đã được thêm vào danh mục sản phẩm.`,
+    successCreateAnother: 'Tạo sản phẩm khác',
+    successViewDashboard: 'Về bảng điều khiển',
+
+    errRequired: 'Trường này là bắt buộc',
+    errMinDesc: 'Mô tả phải có ít nhất 10 ký tự',
+    errPrice: 'Nhập giá hợp lệ, vd: 18.99',
+    errSelectCategory: 'Vui lòng chọn danh mục',
+    errSelectLayerHeight: 'Vui lòng chọn độ dày lớp',
+    errSelectMaterial: 'Chọn ít nhất một vật liệu',
+    errSelectPrinter: 'Chọn ít nhất một máy in',
+  },
+
   admin: {
     loginTitle: 'Đăng nhập quản trị',
     loginDescription: 'Nhập mật khẩu để tiếp tục',
@@ -334,5 +451,6 @@ export const strings = {
     sidebarProducts: 'Sản phẩm',
     sidebarCategories: 'Danh mục',
     backToStore: 'Về cửa hàng',
+    createProduct: 'Tạo sản phẩm',
   },
 }
